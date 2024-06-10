@@ -47,12 +47,9 @@ public final class LotoxShop extends JavaPlugin {
         if (shopContainer.containsKey(uuid)){
             int aAmount = shopContainer.get(uuid);
             shopContainer.remove(uuid, aAmount);
-            shopContainer.put(uuid, coins);
-            getPlayerDataManager().saveData(shopContainer);
-        } else {
-            shopContainer.put(uuid, coins);
-            getPlayerDataManager().saveData(shopContainer);
         }
+        shopContainer.put(uuid, coins);
+        getPlayerDataManager().saveData(shopContainer);
     }
 
 }

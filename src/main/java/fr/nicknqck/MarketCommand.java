@@ -139,7 +139,6 @@ public class MarketCommand implements CommandExecutor, Listener {
                 openEmeraldSellInventory(player);
                 event.setCancelled(true);
             }
-
         }
     }
     private void openIronSellInventory(Player player) {
