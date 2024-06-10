@@ -1,5 +1,6 @@
 package fr.nicknqck;
 
+import fr.nicknqck.utils.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -11,6 +12,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class MarketCommand implements CommandExecutor, Listener {
@@ -27,15 +31,27 @@ public class MarketCommand implements CommandExecutor, Listener {
             } else {
                 if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("list")){
+                        final Map<String, Integer> map = new HashMap<>();
+                        for (PlayerData data : LotoxShop.getInstance().getPlayerDataMap().values()) {
+                            map.put(data.getName(), data.getCoins());
+                        }
+                        List<Map.Entry<String, Integer>> sortedEntries = map.entrySet()
+                                .stream()
+                                .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
+                                .toList();
 
+                        player.sendMessage("§6Classement des joueurs les plus fortunés du serveur :");
+                        for (Map.Entry<String, Integer> entry : sortedEntries) {
+                            player.sendMessage("§7 - §6" + entry.getKey() + " possède §6" + entry.getValue() + " coins");
+                        }
                     }
                 } else if (args.length == 2) {
                     if (args[0].equalsIgnoreCase("get")) {
                         Player target = Bukkit.getPlayer(args[1]);
                         if (target != null){
                             if (LotoxShop.getInstance().getPlayerDataMap().containsKey(target.getUniqueId())){
-                                    player.sendMessage("§c"+target.getName()+"§f possède§a "+LotoxShop.getInstance().getPlayerDataMap().get(target.getUniqueId())+" coins");
-                                    System.out.println("target: "+target.getName()+" has actually "+LotoxShop.getInstance().getPlayerDataMap().get(target.getUniqueId())+" coins");
+                                    player.sendMessage("§c"+target.getName()+"§f possède§a "+LotoxShop.getInstance().getPlayerDataMap().get(target.getUniqueId()).getCoins()+" coins");
+                                    System.out.println("target: "+target.getName()+" has actually "+LotoxShop.getInstance().getPlayerDataMap().get(target.getUniqueId()).getCoins()+" coins");
                                     return true;
                             }
                         }
@@ -46,8 +62,8 @@ public class MarketCommand implements CommandExecutor, Listener {
                         if (target != null && player.isOp()){
                             if (LotoxShop.getInstance().getPlayerDataMap().containsKey(target.getUniqueId())){
                                 if (args[2] != null){
-                                    System.out.println(args[2]);
                                     LotoxShop.getInstance().setCoins(target.getUniqueId(), Integer.parseInt(args[2]));
+                                    player.sendMessage("§c"+target.getName()+"§f possède maintenant§6 "+args[2]+" coins");
                                     return true;
                                 }
                             }
@@ -57,8 +73,8 @@ public class MarketCommand implements CommandExecutor, Listener {
                         if (target != null && player.isOp()){
                             if (LotoxShop.getInstance().getPlayerDataMap().containsKey(target.getUniqueId())){
                                 if (args[2] != null){
-                                    System.out.println(args[2]);
                                     LotoxShop.getInstance().addCoins(target.getUniqueId(), Integer.parseInt(args[2]));
+                                    player.sendMessage("§c"+target.getName()+"§f possède maintenant§6 "+LotoxShop.getInstance().getPlayerDataMap().get(target.getUniqueId()).getCoins()+" coins");
                                     return true;
                                 }
                             }
