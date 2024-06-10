@@ -17,7 +17,7 @@ public class PlayerDataManager {
     public PlayerDataManager(JavaPlugin plugin) {
         File dataFolder = plugin.getDataFolder();
         if (!dataFolder.exists()) {
-            dataFolder.mkdirs(); // Assurez-vous que le dossier de données existe
+            dataFolder.mkdirs();
         }
 
         this.file = new File(dataFolder, "players.yml");
@@ -31,9 +31,13 @@ public class PlayerDataManager {
         this.config = YamlConfiguration.loadConfiguration(file);
     }
 
-    public void saveData(Map<UUID, Integer> shopContainer) {
-        for (Map.Entry<UUID, Integer> entry : shopContainer.entrySet()) {
-            config.set(entry.getKey().toString(), entry.getValue());
+    public void saveData(Map<UUID, PlayerData> playerDataMap) {
+        for (Map.Entry<UUID, PlayerData> entry : playerDataMap.entrySet()) {
+            UUID uuid = entry.getKey();
+            PlayerData playerData = entry.getValue();
+            config.set(uuid.toString() + ".name", playerData.getName());
+            config.set(uuid.toString() + ".isOp", playerData.isOp());
+            config.set(uuid.toString() + ".shopAmount", playerData.getCoins());
         }
         try {
             config.save(file);
@@ -42,11 +46,14 @@ public class PlayerDataManager {
         }
     }
 
-    public void loadData(Map<UUID, Integer> shopContainer) {
+    public void loadData(Map<UUID, PlayerData> playerDataMap) {
         for (String key : config.getKeys(false)) {
             UUID uuid = UUID.fromString(key);
-            int value = config.getInt(key);
-            shopContainer.put(uuid, value);
+            String name = config.getString(key + ".name");
+            boolean isOp = config.getBoolean(key + ".isOp");
+            int shopAmount = config.getInt(key + ".shopAmount");
+            playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount));
         }
     }
 }
+
