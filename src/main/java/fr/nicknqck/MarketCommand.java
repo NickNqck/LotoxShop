@@ -22,9 +22,37 @@ public class MarketCommand implements CommandExecutor, Listener {
     }
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
-        if (sender instanceof Player){
-            openBasicMarketInventory((Player) sender);
-            return true;
+        if (sender instanceof Player player){
+            if (args.length == 0){
+                openBasicMarketInventory(player);
+                return true;
+            } else {
+                if (args.length == 3){
+                    if (args[0].equalsIgnoreCase("set")){
+                        Player target = Bukkit.getPlayer(args[1]);
+                        if (target != null){
+                            if (LotoxShop.getShopContainer().containsKey(target.getUniqueId())){
+                                if (args[2] != null){
+                                    System.out.println(args[2]);
+                                    LotoxShop.getInstance().setCoins(target.getUniqueId(), Integer.parseInt(args[2]));
+                                    return true;
+                                }
+                            }
+                        }
+                    } else if (args[0].equalsIgnoreCase("add")) {
+                        Player target = Bukkit.getPlayer(args[1]);
+                        if (target != null){
+                            if (LotoxShop.getShopContainer().containsKey(target.getUniqueId())){
+                                if (args[2] != null){
+                                    System.out.println(args[2]);
+                                    LotoxShop.getInstance().addCoins(target.getUniqueId(), Integer.parseInt(args[2]));
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         System.out.println("Impossible de faire cette commande via la console");
         return false;
@@ -77,6 +105,7 @@ public class MarketCommand implements CommandExecutor, Listener {
                     removeItem(player, Material.IRON_INGOT, amount);
                     LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*10));
                 }
+                player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*10)+"💰");
                 openIronSellInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§6§n§lOr§7 -§6 ")) {
@@ -86,6 +115,7 @@ public class MarketCommand implements CommandExecutor, Listener {
                     removeItem(player, Material.GOLD_INGOT, amount);
                     LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*50));
                 }
+                player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*50)+"💰");
                 openGoldSellInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§b§n§lDiamant§7 -§6 ")) {
@@ -95,6 +125,7 @@ public class MarketCommand implements CommandExecutor, Listener {
                     removeItem(player, Material.DIAMOND, amount);
                     LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*100));
                 }
+                player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*100)+"💰");
                 openDiamondSellInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§a§n§lÉmeraude§7 -§6 ")) {
@@ -104,6 +135,7 @@ public class MarketCommand implements CommandExecutor, Listener {
                     removeItem(player, Material.EMERALD, amount);
                     LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*200));
                 }
+                player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*200)+"💰");//   https://minecraft.tools/fr/color-code.php
                 openEmeraldSellInventory(player);
                 event.setCancelled(true);
             }

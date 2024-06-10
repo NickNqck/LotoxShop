@@ -2,7 +2,6 @@ package fr.nicknqck;
 
 import fr.nicknqck.utils.PlayerDataManager;
 import lombok.Getter;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -33,17 +32,27 @@ public final class LotoxShop extends JavaPlugin {
     private void registerCommands(){
         Objects.requireNonNull(getServer().getPluginCommand("market")).setExecutor(new MarketCommand());
     }
-    public int addCoins(UUID uuid, int coins){
+    public void addCoins(UUID uuid, int coins){
         if (shopContainer.containsKey(uuid)){
             int aAmount = shopContainer.get(uuid);
             shopContainer.remove(uuid, aAmount);
             shopContainer.put(uuid, aAmount+coins);
             getPlayerDataManager().saveData(shopContainer);
-            return aAmount+coins;
         } else {
             shopContainer.put(uuid, coins);
             getPlayerDataManager().saveData(shopContainer);
-            return coins;
         }
     }
+    public void setCoins(UUID uuid, int coins){
+        if (shopContainer.containsKey(uuid)){
+            int aAmount = shopContainer.get(uuid);
+            shopContainer.remove(uuid, aAmount);
+            shopContainer.put(uuid, coins);
+            getPlayerDataManager().saveData(shopContainer);
+        } else {
+            shopContainer.put(uuid, coins);
+            getPlayerDataManager().saveData(shopContainer);
+        }
+    }
+
 }
