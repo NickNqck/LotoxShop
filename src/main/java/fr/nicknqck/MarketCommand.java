@@ -30,6 +30,13 @@ public class MarketCommand implements CommandExecutor, Listener {
                 return true;
             } else {
                 if (args.length == 1) {
+                    if (args[0].equalsIgnoreCase("help") || args[0].equalsIgnoreCase("?")){
+                        player.sendMessage("Voici la liste des commandes disponible",
+                                "",
+                                "§7 -§6 /market§f: Permet d'ouvrir le marcher gérer par le serveur",
+                                "",
+                                "§7 -§6 /market list§f: Permet d'avoir le classement des joueurs avec le plus d'argent");
+                    }
                     if (args[0].equalsIgnoreCase("list")){
                         final Map<String, Integer> map = new HashMap<>();
                         for (PlayerData data : LotoxShop.getInstance().getPlayerDataMap().values()) {
@@ -86,7 +93,6 @@ public class MarketCommand implements CommandExecutor, Listener {
         System.out.println("Impossible de faire cette commande via la console");
         return false;
     }
-
     @EventHandler
     private void onInventoryClick(InventoryClickEvent event){
         if (event.getClickedInventory() == null)return;
