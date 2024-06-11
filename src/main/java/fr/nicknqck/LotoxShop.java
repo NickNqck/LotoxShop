@@ -1,9 +1,10 @@
 package fr.nicknqck;
 
 import fr.mrmicky.fastboard.FastBoard;
-import fr.nicknqck.listeners.BuyMarket;
+import fr.nicknqck.listeners.buy.BuyMarket;
 import fr.nicknqck.listeners.PlayerListeners;
 import fr.nicknqck.listeners.SellMarket;
+import fr.nicknqck.listeners.buy.equipement.EquipementMarket;
 import fr.nicknqck.utils.*;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -13,10 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public final class LotoxShop extends JavaPlugin {
 
@@ -58,6 +56,7 @@ public final class LotoxShop extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SellMarket(), this);
         getServer().getPluginManager().registerEvents(new BuyMarket(), this);
+        getServer().getPluginManager().registerEvents(new EquipementMarket(), this);
     }
     public void addCoins(UUID uuid, int coins){
         if (playerDataMap.containsKey(uuid)){
@@ -117,10 +116,21 @@ public final class LotoxShop extends JavaPlugin {
                         if (s.getType() != material)return;
                             if (s.getAmount() + amount <= 64) {
                                 target.getInventory().addItem(new ItemBuilder(material).setAmount(amount).toItemStack());
+                            } else {
+                                target.getWorld().dropItemNaturally(target.getLocation(), new ItemBuilder(material).setAmount(amount).toItemStack());
                             }
                     }
                 }
             }
+    }
+    public void giveItem(Player target, ItemStack... items) {
+        for (ItemStack item : items){
+            if (countEmptySlots(target) > 0) {
+                target.getInventory().addItem(item);
+            }else {
+                target.getWorld().dropItemNaturally(target.getLocation(), item);
+            }
+        }
     }
     private int countEmptySlots(Player player) {
         int emptySlots = 0;
@@ -135,7 +145,7 @@ public final class LotoxShop extends JavaPlugin {
     public String getStringCoins(UUID uuid){
         return formatCoins(getPlayerDataMap().get(uuid).getCoins());
     }
-    private String formatCoins(int coins) {
+    public String formatCoins(int coins) {
         if (coins >= 1_000_000) {
             return String.format("%.1fM", coins / 1_000_000.0);
         } else if (coins >= 1_000) {
@@ -143,5 +153,24 @@ public final class LotoxShop extends JavaPlugin {
         } else {
             return String.valueOf(coins);
         }
+    }
+    public int getPriceFromLore(List<String> lore) {
+        for (String line : lore) {
+            if (line.contains("Prix: ")) {
+                String priceString = line.replaceAll("\\D", "");
+                priceString.replaceFirst("6", "");
+                return Integer.parseInt(priceString);
+            }
+        }
+        return 0;
+    }
+    public boolean sellItem(Player player, ItemStack item) {
+        addCoins(player.getUniqueId(), 0);
+        int price = getPriceFromLore(item.getItemMeta().getLore());
+        if (getPlayerDataMap().get(player.getUniqueId()).getCoins() >= price) {
+            giveItem(player, item);
+            return true;
+        }
+        return false;
     }
 }

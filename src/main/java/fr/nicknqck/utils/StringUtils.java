@@ -3,7 +3,7 @@ package fr.nicknqck.utils;
 public class StringUtils {
 
     public static String secondsTowardsBeautifulinScoreboard(int seconds){
-        int days = seconds / 86400; // 86400 seconds in a day
+        int days = seconds / 86400;
         int remainingSecondsAfterDays = seconds % 86400;
 
         int hours = remainingSecondsAfterDays / 3600;

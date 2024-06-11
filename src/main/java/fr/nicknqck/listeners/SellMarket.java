@@ -78,8 +78,8 @@ public class SellMarket implements Listener {
                 int zAMOUNT = LotoxShop.getInstance().getItemAmount(player, Material.DIAMOND);
                 if (amount <= zAMOUNT){
                     LotoxShop.getInstance().removeItem(player, Material.DIAMOND, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*100));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*100)+"💰");
+                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*150));
+                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*150)+"💰");
                 }
                 LotoxShop.getInstance().getInventories().openDiamondSellInventory(player);
                 event.setCancelled(true);
@@ -92,8 +92,8 @@ public class SellMarket implements Listener {
                 int zAMOUNT =LotoxShop.getInstance(). getItemAmount(player, Material.EMERALD);
                 if (amount <= zAMOUNT){
                     LotoxShop.getInstance().removeItem(player, Material.EMERALD, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*200));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*200)+"💰");//   https://minecraft.tools/fr/color-code.php
+                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*100));
+                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*100)+"💰");//   https://minecraft.tools/fr/color-code.php
                 }
                 LotoxShop.getInstance().getInventories().openEmeraldSellInventory(player);
                 event.setCancelled(true);
