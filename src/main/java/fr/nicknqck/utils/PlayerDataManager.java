@@ -38,6 +38,8 @@ public class PlayerDataManager {
             config.set(uuid.toString() + ".name", playerData.getName());
             config.set(uuid + ".isOp", playerData.isOp());
             config.set(uuid + ".shopAmount", playerData.getCoins());
+            config.set(uuid + ".achatAmount", playerData.getAmountPurchase());
+            config.set(uuid + ".hasteLevel", playerData.getHasteLevel());
         }
         try {
             config.save(file);
@@ -52,8 +54,9 @@ public class PlayerDataManager {
             String name = config.getString(key + ".name");
             boolean isOp = config.getBoolean(key + ".isOp");
             int shopAmount = config.getInt(key + ".shopAmount");
-            playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount));
+            int achatAmount = config.getInt(key+ ".achatAmount");
+            int hasteLevel = config.getInt(key+ ".hasteLevel");
+            playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount, achatAmount, hasteLevel));
         }
     }
 }
-

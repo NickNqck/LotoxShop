@@ -11,10 +11,15 @@ public class PlayerData {
     private boolean isOp;
     @Setter
     private int coins;
-
-    public PlayerData(String name, boolean isOp, int shopAmount) {
+    @Setter
+    private int amountPurchase;
+    @Setter
+    private int hasteLevel;
+    public PlayerData(String name, boolean isOp, int shopAmount, int amountPurchase, int hasteLevel) {
         this.name = name;
         this.isOp = isOp;
         this.coins = shopAmount;
+        this.amountPurchase = amountPurchase;
+        this.hasteLevel = hasteLevel;
     }
 }

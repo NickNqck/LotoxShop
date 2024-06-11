@@ -30,11 +30,14 @@ public class BuyMarket implements Listener {
                     return;
                 }
                 switch (item.getType()){
-                    case ARROW, BOOK, COOKED_BEEF, POTION, BRICKS:
+                    case ARROW, BOOK, COOKED_BEEF, BRICKS:
                         player.sendMessage("§cFeature pas encore dev...");
                         break;
                     case ARMOR_STAND:
                         LotoxShop.getInstance().getInventories().openEquipementMarketInventory(player);
+                        break;
+                    case POTION:
+                        LotoxShop.getInstance().getInventories().openEffetMarketInventory(player);
                         break;
                 }
                 event.setCancelled(true);

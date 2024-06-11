@@ -23,7 +23,7 @@ public class StringUtils {
         if (minutes > 0) {
             timeString.append(minutes).append("m");
         }
-        if (sec > 0) {
+        if (sec > 0 && minutes <=0) {
             timeString.append(sec).append("s");
         }
 

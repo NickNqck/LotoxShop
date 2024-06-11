@@ -1,11 +1,11 @@
 package fr.nicknqck.utils;
 
 import fr.nicknqck.LotoxShop;
+import fr.nicknqck.listeners.buy.equipement.SellablePotions;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -169,7 +169,7 @@ public class Inventories {
         inv.setItem(11, new ItemBuilder(Material.BOOK).setName("§r§fKits").setLore("Pas encore développer...").toItemStack());
         inv.setItem(13, new ItemBuilder(Material.ARMOR_STAND).setName("§r§fÉquipement").toItemStack());
         inv.setItem(15, new ItemBuilder(Material.COOKED_BEEF).setName("§r§fNourriture").setLore("Pas encore développer...").toItemStack());
-        inv.setItem(29, new ItemBuilder(Material.POTION).hideAttributes(ItemFlag.HIDE_POTION_EFFECTS).setName("§r§fEffets").setLore("Pas encore développer...").setPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20*60*8, 0, false, false)).toItemStack());
+        inv.setItem(29, new ItemBuilder(Material.POTION).hideAttributes(ItemFlag.HIDE_POTION_EFFECTS).setName("§r§fEffets").setPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20*60*8, 0, false, false)).toItemStack());
         inv.setItem(31, new ItemBuilder(Material.BRICKS).setName("§r§fBlocs").setLore("Pas encore développer...").toItemStack());
         inv.setItem(33, new ItemBuilder(Material.ARROW).setName("§r§fConssumable").setLore("Pas encore développer...").toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
@@ -199,6 +199,7 @@ public class Inventories {
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
+
     public void openSwordsBuyMarketInventory(Player player){
         Inventory inv = Bukkit.createInventory(player, 9*5, "§c§n§lÉpées§7 -§6 "+LotoxShop.getInstance().getStringCoins(player.getUniqueId())+" coins");
         for (int i = 0; i <= 9; i+=7){
@@ -224,4 +225,32 @@ public class Inventories {
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
+    public void openEffetMarketInventory(Player player){
+        Inventory inv = Bukkit.createInventory(player, 9*5, "§c§n§lEffets§7 -§6 "+LotoxShop.getInstance().getStringCoins(player.getUniqueId())+" coins");
+        for (int i = 0; i <= 9; i+=7){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i+1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 36; i <= 45; i+=7){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i+1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 9; i <= 17; i+=8){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 27; i <= 35; i+=8){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        for (SellablePotions potions : SellablePotions.values()){
+            inv.setItem(potions.getSlot(), new ItemBuilder(Material.POTION)
+                    .setName(potions.getName())
+                    .setLore("","§6Prix: "+potions.getOriginalPrice())
+                    .setPotionEffect(new PotionEffect(potions.getEffectType(), Integer.MAX_VALUE, LotoxShop.getInstance().getPotionEffectLevel(player, potions.getEffectType()), false, false))
+                    .toItemStack());
+        }
+        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        player.openInventory(inv);
+    }
+
 }

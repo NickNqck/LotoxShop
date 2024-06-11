@@ -8,6 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Objects;
+
 public class EquipementMarket implements Listener {
 
     @EventHandler
@@ -49,7 +51,7 @@ public class EquipementMarket implements Listener {
                     LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
                 }
-
+                LotoxShop.getInstance().trySelling(player, item);
                 event.setCancelled(true);
                 //int price = Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(item.getItemMeta()).getLore()).get(2));
             } else if (name.contains("§c§n§lPlastrons§7 -§6 ")){
@@ -57,20 +59,22 @@ public class EquipementMarket implements Listener {
                     LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
                 }
-                LotoxShop.getInstance().getPriceFromLore(item.getItemMeta().getLore());
-                //int price = Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(item.getItemMeta()).getLore()).get(2));
+                LotoxShop.getInstance().trySelling(player, item);
+                event.setCancelled(true);
             }else if (name.contains("§c§n§lCasques§7 -§6 ")) {
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
                 }
-                LotoxShop.getInstance().getPriceFromLore(item.getItemMeta().getLore());
+                LotoxShop.getInstance().trySelling(player, item);
+                event.setCancelled(true);
             } else if (name.contains("§c§n§lBow§7 -§6 ")) {
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
                 }
-                LotoxShop.getInstance().getPriceFromLore(item.getItemMeta().getLore());
+                LotoxShop.getInstance().trySelling(player, item);
+                event.setCancelled(true);
             }
         }
     }
