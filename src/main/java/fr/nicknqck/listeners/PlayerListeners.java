@@ -1,4 +1,4 @@
-package fr.nicknqck.utils;
+package fr.nicknqck.listeners;
 
 import fr.mrmicky.fastboard.FastBoard;
 import fr.nicknqck.LotoxShop;

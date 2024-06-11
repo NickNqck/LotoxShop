@@ -15,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class MarketCommand implements CommandExecutor, Listener {
 
@@ -117,105 +116,12 @@ public class MarketCommand implements CommandExecutor, Listener {
                     LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
                     event.setCancelled(true);
                 }
-            } else if (name.contains("§a§n§lVendre§7 -§6 ")){
-                switch (item.getType()){
-                    case IRON_INGOT:
-                        LotoxShop.getInstance().getInventories().openIronSellInventory(player);
-                        break;
-                    case GOLD_INGOT:
-                        LotoxShop.getInstance().getInventories().openGoldSellInventory(player);
-                        break;
-                    case DIAMOND:
-                        LotoxShop.getInstance().getInventories().openDiamondSellInventory(player);
-                        break;
-                    case EMERALD:
-                        LotoxShop.getInstance().getInventories().openEmeraldSellInventory(player);
-                        break;
-                    case ARROW:
-                        LotoxShop.getInstance().getInventories().openBasicMarketInventory(player);
-                        break;
+                if (item.isSimilar(LotoxShop.getInstance().getInventories().getBuyMarket())){
+                    LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
+                    event.setCancelled(true);
                 }
-                event.setCancelled(true);
-            } else if (name.contains("§f§n§lFer§7 -§6 ")){
-                if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
-                    return;
-                }
-                int amount = item.getAmount();
-                int zAMOUNT = getItemAmount(player, Material.IRON_INGOT);
-                if (amount <= zAMOUNT){
-                    removeItem(player, Material.IRON_INGOT, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*10));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*10)+"💰");
-                }
-                LotoxShop.getInstance().getInventories().openIronSellInventory(player);
-                event.setCancelled(true);
-            } else if (name.contains("§6§n§lOr§7 -§6 ")) {
-                if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
-                    return;
-                }
-                int amount = item.getAmount();
-                int zAMOUNT = getItemAmount(player, Material.GOLD_INGOT);
-                if (amount <= zAMOUNT){
-                    removeItem(player, Material.GOLD_INGOT, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*50));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*50)+"💰");
-                }
-                LotoxShop.getInstance().getInventories().openGoldSellInventory(player);
-                event.setCancelled(true);
-            } else if (name.contains("§b§n§lDiamant§7 -§6 ")) {
-                if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
-                    return;
-                }
-                int amount = item.getAmount();
-                int zAMOUNT = getItemAmount(player, Material.DIAMOND);
-                if (amount <= zAMOUNT){
-                    removeItem(player, Material.DIAMOND, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*100));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*100)+"💰");
-                }
-                LotoxShop.getInstance().getInventories().openDiamondSellInventory(player);
-                event.setCancelled(true);
-            } else if (name.contains("§a§n§lÉmeraude§7 -§6 ")) {
-                if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
-                    return;
-                }
-                int amount = item.getAmount();
-                int zAMOUNT = getItemAmount(player, Material.EMERALD);
-                if (amount <= zAMOUNT){
-                    removeItem(player, Material.EMERALD, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*200));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*200)+"💰");//   https://minecraft.tools/fr/color-code.php
-                }
-                LotoxShop.getInstance().getInventories().openEmeraldSellInventory(player);
-                event.setCancelled(true);
             }
         }
     }
 
-
-    public int getItemAmount(Player player, Material material) {
-        //Methode is from UHC_MEETUP, owner by NickNqck
-        int toReturn = 0;
-        for (ItemStack content : player.getInventory().getContents()) {
-            if (content != null && content.getType() == material) {
-                toReturn += content.getAmount();
-            }
-        }
-        return toReturn;
-    }
-    public void removeItem(Player player, Material material, int remove) {
-        //Methode is from UHC_MEETUP, owned by NickNqck
-        if (Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).getAmount() <= remove) {
-            player.getInventory().removeItem(player.getInventory().getItem(player.getInventory().first(material)));
-            return;
-        }
-        Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).setAmount(Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).getAmount() - remove);
-        if (remove > 64) {
-            Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).setAmount(Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).getAmount() - (remove - 64));
-        }
-    }
 }
