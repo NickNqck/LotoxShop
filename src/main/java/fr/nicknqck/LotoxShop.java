@@ -107,4 +107,41 @@ public final class LotoxShop extends JavaPlugin {
             Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).setAmount(Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).getAmount() - (remove - 64));
         }
     }
+    public void giveItem(Player target, Material material, int amount) {
+            if (countEmptySlots(target) > 0) {
+                target.getInventory().addItem(new ItemBuilder(material).setAmount(amount).toItemStack());
+            }else {
+                if (target.getInventory().contains(new ItemStack(material))) {
+                    for (ItemStack s : target.getInventory().getContents()) {
+                        if (s == null)return;
+                        if (s.getType() != material)return;
+                            if (s.getAmount() + amount <= 64) {
+                                target.getInventory().addItem(new ItemBuilder(material).setAmount(amount).toItemStack());
+                            }
+                    }
+                }
+            }
+    }
+    private int countEmptySlots(Player player) {
+        int emptySlots = 0;
+        ItemStack[] contents = player.getInventory().getContents();
+        for (ItemStack item : contents) {
+            if (item == null || item.getType() == Material.AIR) {
+                emptySlots++;
+            }
+        }
+        return emptySlots;
+    }
+    public String getStringCoins(UUID uuid){
+        return formatCoins(getPlayerDataMap().get(uuid).getCoins());
+    }
+    private String formatCoins(int coins) {
+        if (coins >= 1_000_000) {
+            return String.format("%.1fM", coins / 1_000_000.0);
+        } else if (coins >= 1_000) {
+            return String.format("%.1fk", coins / 1_000.0);
+        } else {
+            return String.valueOf(coins);
+        }
+    }
 }

@@ -25,16 +25,16 @@ public class BuyMarket implements Listener {
             if (name.contains("§c§n§lAcheter§7 -§6 ")){
                 switch (item.getType()){
                     case IRON_INGOT:
-                        LotoxShop.getInstance().getInventories().openIronSellInventory(player);
+                        LotoxShop.getInstance().getInventories().openIronBuyInventory(player);
                         break;
                     case GOLD_INGOT:
-                        LotoxShop.getInstance().getInventories().openGoldSellInventory(player);
+                        LotoxShop.getInstance().getInventories().openGoldBuyInventory(player);
                         break;
                     case DIAMOND:
-                        LotoxShop.getInstance().getInventories().openDiamondSellInventory(player);
+                        LotoxShop.getInstance().getInventories().openDiamondBuyInventory(player);
                         break;
                     case EMERALD:
-                        LotoxShop.getInstance().getInventories().openEmeraldSellInventory(player);
+                        LotoxShop.getInstance().getInventories().openEmeraldBuyInventory(player);
                         break;
                     case ARROW:
                         LotoxShop.getInstance().getInventories().openBasicMarketInventory(player);
@@ -43,7 +43,7 @@ public class BuyMarket implements Listener {
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lFer§7 -§6 ")){
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
+                    LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     return;
                 }
                 int amount = item.getAmount();
@@ -53,11 +53,11 @@ public class BuyMarket implements Listener {
                     LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*10));
                     player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*10)+"💰");
                 }
-                LotoxShop.getInstance().getInventories().openIronSellInventory(player);
+                LotoxShop.getInstance().getInventories().openIronBuyInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lOr§7 -§6 ")) {
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
+                    LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     return;
                 }
                 int amount = item.getAmount();
@@ -67,11 +67,11 @@ public class BuyMarket implements Listener {
                     LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*50));
                     player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*50)+"💰");
                 }
-                LotoxShop.getInstance().getInventories().openGoldSellInventory(player);
+                LotoxShop.getInstance().getInventories().openGoldBuyInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lDiamant§7 -§6 ")) {
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
+                    LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     return;
                 }
                 int amount = item.getAmount();
@@ -81,11 +81,11 @@ public class BuyMarket implements Listener {
                     LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*100));
                     player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*100)+"💰");
                 }
-                LotoxShop.getInstance().getInventories().openDiamondSellInventory(player);
+                LotoxShop.getInstance().getInventories().openDiamondBuyInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lÉmeraude§7 -§6 ")) {
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
+                    LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     return;
                 }
                 int amount = item.getAmount();
@@ -95,7 +95,7 @@ public class BuyMarket implements Listener {
                     LotoxShop.getInstance().addCoins(player.getUniqueId(), (amount*200));
                     player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(amount*200)+"💰");//   https://minecraft.tools/fr/color-code.php
                 }
-                LotoxShop.getInstance().getInventories().openEmeraldSellInventory(player);
+                LotoxShop.getInstance().getInventories().openEmeraldBuyInventory(player);
                 event.setCancelled(true);
             }
         }
