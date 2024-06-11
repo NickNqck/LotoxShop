@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 public class Inventories {
     private final ItemStack SellMarket =  new ItemBuilder(Material.GREEN_DYE).setName("§r§aVendre").toItemStack();
     private final ItemStack ReturnArrow = new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack();
-    private final ItemStack BuyMarket = new ItemBuilder(Material.RED_DYE).setName("§r§cAcheter").toItemStack();
+    private final ItemStack BuyMarket = new ItemBuilder(Material.RED_DYE).setName("§r§cAcheter").setAmount(1).toItemStack();
     public void openIronSellInventory(Player player) {
         Inventory inv = Bukkit.createInventory(player, 9*3, "§a§n§lFer§7 -§6 "+ LotoxShop.getInstance().getPlayerDataMap().get(player.getUniqueId()).getCoins()+" coins");
         for (int i = 0; i <= 9; i+=7){
@@ -174,6 +174,7 @@ public class Inventories {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
             inv.setItem(i+1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
+        //2
         for (int i = 9; i <= 18; i+=9){
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
