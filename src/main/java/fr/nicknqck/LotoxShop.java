@@ -95,14 +95,20 @@ public final class LotoxShop extends JavaPlugin {
     private void updateBoard(FastBoard board) {
         board.updateLines(
                 "",
-                "§a§l • Infos Joueur ",
+                "§l • §7§lPROFIL ",
                 "",
-                "Pseudo: "+board.getPlayer().getName(),
-                "Temp de jeu: "+ StringUtils.secondsTowardsBeautifulinScoreboard(board.getPlayer().getStatistic(Statistic.PLAY_ONE_MINUTE)/20),
-                "Coins: " + getPlayerDataMap().get(board.getPlayer().getUniqueId()).getCoins(),
+                "§7§l・§bCompte: §e" + board.getPlayer().getName(),
+                "§7§l・§bCoins: §a§l" + getPlayerDataMap().get(board.getPlayer().getUniqueId()).getCoins() + "§e 💰",
+                "§7§l・§bEffets: §rAucun",
                 "",
-                "Kills: "+board.getPlayer().getStatistic(Statistic.PLAYER_KILLS),
-                "Morts: "+board.getPlayer().getStatistic(Statistic.DEATHS)
+                "§l • §7§lSTATISTIQUES ",
+                "",
+                "§7§l・§aKills: " + board.getPlayer().getStatistic(Statistic.PLAYER_KILLS),
+                "§7§l・§cMorts: " + board.getPlayer().getStatistic(Statistic.DEATHS),
+                "§7§l・§9Joueurs: §b" + Bukkit.getOnlinePlayers().size(),
+                "§7§l・§9Temps de jeu: §e" + StringUtils.secondsTowardsBeautifulinScoreboard(board.getPlayer().getStatistic(Statistic.PLAY_ONE_MINUTE)/20)
+
+
         );
     }
     public int getItemAmount(Player player, Material material) {

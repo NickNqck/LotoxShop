@@ -27,7 +27,7 @@ public class PlayerListeners implements Listener{
         LotoxShop.getInstance().addCoins(player.getUniqueId(), 0);
         FastBoard board = new FastBoard(player);
 
-        board.updateTitle("§9LotoxShop");
+        board.updateTitle("§dLotoxShop");
 
         LotoxShop.getInstance().getBoards().put(player.getUniqueId(), board);
     }

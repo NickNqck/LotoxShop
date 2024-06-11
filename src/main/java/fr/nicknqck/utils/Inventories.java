@@ -225,6 +225,82 @@ public class Inventories {
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
+    public void openHelmetsBuyMarketInventory(Player player){
+        Inventory inv = Bukkit.createInventory(player, 9*5, "§c§n§lCasques§7 -§6 "+LotoxShop.getInstance().getStringCoins(player.getUniqueId())+" coins");
+        for (int i = 0; i <= 9; i+=7){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i+1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 36; i <= 45; i+=7){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i+1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 9; i <= 17; i+=8){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 27; i <= 35; i+=8){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        inv.setItem(11, new ItemBuilder(Material.IRON_HELMET).setName("§c§lCasque d'elfe").setLore("","§6Prix: "+7500+" coins")
+                .addEnchant(Enchantment.PROTECTION_PROJECTILE, 5)
+                .addEnchant(Enchantment.OXYGEN, 3)
+                .addEnchant(Enchantment.DURABILITY, 3)
+                .addEnchant(Enchantment.MENDING,1)
+                .toItemStack());
+        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        player.openInventory(inv);
+    }public void openChestPlateBuyMarketInventory(Player player) {
+        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lPlastrons§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
+        for (int i = 0; i <= 9; i += 7) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 36; i <= 45; i += 7) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 9; i <= 17; i += 8) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 27; i <= 35; i += 8) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        inv.setItem(11, new ItemBuilder(Material.IRON_CHESTPLATE).setName("§c§lPlastron d'elfe").setLore("", "§6Prix: " + 10000 + " coins")
+                .addEnchant(Enchantment.PROTECTION_PROJECTILE, 5)
+                .addEnchant(Enchantment.MENDING, 1)
+                .addEnchant(Enchantment.DURABILITY, 3)
+                .toItemStack());
+        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        player.openInventory(inv);
+    }public void openBowBuyMarketInventory(Player player) {
+        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lArc§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
+        for (int i = 0; i <= 9; i += 7) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 36; i <= 45; i += 7) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 9; i <= 17; i += 8) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 27; i <= 35; i += 8) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        inv.setItem(11, new ItemBuilder(Material.BOW).setName("§c§lArc d'Elfe").setLore("", "§6Prix: " + 30000 + " coins")
+                .addEnchant(Enchantment.ARROW_DAMAGE, 7)
+                .addEnchant(Enchantment.MENDING, 1)
+                .addEnchant(Enchantment.DURABILITY, 3)
+                .addEnchant(Enchantment.ARROW_FIRE, 1)
+                .addEnchant(Enchantment.ARROW_INFINITE, 1)
+                .toItemStack());
+        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        player.openInventory(inv);
+    }
     public void openEffetMarketInventory(Player player){
         Inventory inv = Bukkit.createInventory(player, 9*5, "§c§n§lEffets§7 -§6 "+LotoxShop.getInstance().getStringCoins(player.getUniqueId())+" coins");
         for (int i = 0; i <= 9; i+=7){
