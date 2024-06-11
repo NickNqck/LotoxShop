@@ -35,7 +35,14 @@ public class MarketCommand implements CommandExecutor, Listener {
                                 "",
                                 "§7 -§6 /market§f: Permet d'ouvrir le marcher gérer par le serveur",
                                 "",
-                                "§7 -§6 /market list§f: Permet d'avoir le classement des joueurs avec le plus d'argent");
+                                "§7 -§6 /market list§f: Permet d'avoir le classement des joueurs avec le plus d'argent",
+                                "",
+                                "§7 -§6 /market get <joueur>§f: Permet de savoir quel est le nombre de coins du joueur viser",
+                                "",
+                                "§7 -§6 /market set <joueur> <nombre>§f: Permet de définir le nombre de coins d'un joueur§7 (§cAdmin Command§7)",
+                                "",
+                                "§7 -§6 /market add <joueur> <nombre>§f: Permet d'ajouter le nombre de coins voulu au joueur viser§7 (§cAdmin Command§7)"
+                        );
                     }
                     if (args[0].equalsIgnoreCase("list")){
                         final Map<String, Integer> map = new HashMap<>();

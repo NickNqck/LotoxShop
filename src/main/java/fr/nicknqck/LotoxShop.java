@@ -1,10 +1,11 @@
 package fr.nicknqck;
 
-import fr.nicknqck.utils.Inventories;
-import fr.nicknqck.utils.PlayerData;
-import fr.nicknqck.utils.PlayerDataManager;
+import fr.mrmicky.fastboard.FastBoard;
+import fr.nicknqck.utils.*;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Statistic;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -22,6 +23,8 @@ public final class LotoxShop extends JavaPlugin {
     private Inventories inventories;
     @Getter
     private final Map<UUID, PlayerData> playerDataMap = new HashMap<>();
+    @Getter
+    private final Map<UUID, FastBoard> boards = new HashMap<>();
     @Override
     public void onEnable() {
         instance = this;
@@ -29,6 +32,15 @@ public final class LotoxShop extends JavaPlugin {
         inventories = new Inventories();
         this.playerDataManager.loadData(playerDataMap);
         registerCommands();
+        registerListeners();
+        for (Player p : Bukkit.getOnlinePlayers()){
+            PlayerListeners.onBoardJoin(p);
+        }
+        getServer().getScheduler().runTaskTimer(this, () -> {
+            for (FastBoard board : this.boards.values()) {
+                updateBoard(board);
+            }
+        }, 0, 20);
     }
     @Override
     public void onDisable() {
@@ -36,6 +48,9 @@ public final class LotoxShop extends JavaPlugin {
     }
     private void registerCommands(){
         Objects.requireNonNull(getServer().getPluginCommand("market")).setExecutor(new MarketCommand());
+    }
+    private void registerListeners() {
+        getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
     }
     public void addCoins(UUID uuid, int coins){
         if (playerDataMap.containsKey(uuid)){
@@ -50,5 +65,18 @@ public final class LotoxShop extends JavaPlugin {
         }
         playerDataMap.get(uuid).setCoins(coins);
         getPlayerDataManager().saveData(playerDataMap);
+    }
+    private void    updateBoard(FastBoard board) {
+        board.updateLines(
+                "",
+                "§a§l • Infos Joueur ",
+                "",
+                "Pseudo: "+board.getPlayer().getName(),
+                "Temp de jeu: "+ StringUtils.secondsTowardsBeautifulinScoreboard(board.getPlayer().getStatistic(Statistic.PLAY_ONE_MINUTE)/20),
+                "Coins: " + getPlayerDataMap().get(board.getPlayer().getUniqueId()).getCoins(),
+                "",
+                "Kills: "+board.getPlayer().getStatistic(Statistic.PLAYER_KILLS),
+                "Morts: "+board.getPlayer().getStatistic(Statistic.DEATHS)
+        );
     }
 }

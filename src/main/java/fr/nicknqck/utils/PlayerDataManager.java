@@ -36,8 +36,8 @@ public class PlayerDataManager {
             UUID uuid = entry.getKey();
             PlayerData playerData = entry.getValue();
             config.set(uuid.toString() + ".name", playerData.getName());
-            config.set(uuid.toString() + ".isOp", playerData.isOp());
-            config.set(uuid.toString() + ".shopAmount", playerData.getCoins());
+            config.set(uuid + ".isOp", playerData.isOp());
+            config.set(uuid + ".shopAmount", playerData.getCoins());
         }
         try {
             config.save(file);
