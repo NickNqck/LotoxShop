@@ -159,6 +159,12 @@ public class ItemBuilder {
         is.setItemMeta(im);
         return this;
     }
+    public ItemBuilder setPrice(int price){
+        ItemMeta im = is.getItemMeta();
+        im.setLore(Arrays.asList("","§6Prix: "+price));
+        is.setItemMeta(im);
+        return this;
+    }
     /**
      * Re-sets the lore.
      * @param lore The lore to set it to.

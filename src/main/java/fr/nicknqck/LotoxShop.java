@@ -4,6 +4,7 @@ import fr.mrmicky.fastboard.FastBoard;
 import fr.nicknqck.listeners.PlayerListeners;
 import fr.nicknqck.listeners.SellMarket;
 import fr.nicknqck.listeners.buy.BuyMarket;
+import fr.nicknqck.listeners.buy.conssumable.ConssumableMarket;
 import fr.nicknqck.listeners.buy.potion.EffetMarket;
 import fr.nicknqck.listeners.buy.equipement.EquipementMarket;
 import fr.nicknqck.listeners.buy.potion.SellablePotions;
@@ -63,6 +64,7 @@ public final class LotoxShop extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BuyMarket(), this);
         getServer().getPluginManager().registerEvents(new EquipementMarket(), this);
         getServer().getPluginManager().registerEvents(new EffetMarket(), this);
+        getServer().getPluginManager().registerEvents(new ConssumableMarket(), this);
     }
     public void addCoins(UUID uuid, int coins){
         if (playerDataMap.containsKey(uuid)){
@@ -213,7 +215,7 @@ public final class LotoxShop extends JavaPlugin {
     public void trySelling(Player player, ItemStack item){
         if (item.hasItemMeta() && Objects.requireNonNull(item.getItemMeta()).hasLore()){
             if (LotoxShop.getInstance().sellItem(player, item, true)) {
-                player.sendMessage("§aVous avez acheter l'item: \""+item.getItemMeta().getDisplayName()+"§a\"");
+                player.sendMessage("§aVous avez acheter l'item: \""+(item.getItemMeta().hasDisplayName() ? item.getItemMeta().getDisplayName() : item.getType().name())+"§a\"");
             } else {
                 player.sendMessage("§cVous n'avez pas asser pour acheter cette objet !");
             }

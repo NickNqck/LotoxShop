@@ -1,4 +1,4 @@
-package fr.nicknqck.listeners.buy;
+package fr.nicknqck.listeners.buy.conssumable;
 
 import fr.nicknqck.LotoxShop;
 import org.bukkit.Material;
@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class BuyMarket implements Listener {
+public class ConssumableMarket implements Listener {
 
     @EventHandler
     private void onInventoryClick(InventoryClickEvent event){
@@ -23,23 +23,14 @@ public class BuyMarket implements Listener {
             String name = event.getView().getTitle();
             ItemStack item = event.getCurrentItem();
             if (!item.hasItemMeta())return;
-            if (name.contains("§c§n§lAcheter§7 -§6 ")){
+            if (name.contains("§c§n§lConssumables§7 -§6 ")){
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openBasicMarketInventory(player);
+                    LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
-                switch (item.getType()){
-                    case BOOK, COOKED_BEEF, BRICKS, POTION:
-                        player.sendMessage("§cFeature pas encore dev...");
-                        break;
-                    case ARMOR_STAND:
-                        LotoxShop.getInstance().getInventories().openEquipementMarketInventory(player);
-                        break;
-                    case ARROW:
-                        LotoxShop.getInstance().getInventories().openConssumabletMarketInventory(player);
-                        break;
-                }
+                LotoxShop.getInstance().trySelling(player, item);
+                LotoxShop.getInstance().getInventories().openConssumabletMarketInventory(player);
                 event.setCancelled(true);
             }
         }
