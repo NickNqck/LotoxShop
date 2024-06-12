@@ -1,4 +1,4 @@
-package fr.nicknqck.listeners.buy.equipement;
+package fr.nicknqck.listeners.buy.potion;
 
 import lombok.Getter;
 import org.bukkit.potion.PotionEffectType;

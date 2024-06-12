@@ -1,6 +1,7 @@
-package fr.nicknqck.listeners.buy.equipement;
+package fr.nicknqck.listeners.buy.potion;
 
 import fr.nicknqck.LotoxShop;
+import fr.nicknqck.listeners.buy.potion.SellablePotions;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

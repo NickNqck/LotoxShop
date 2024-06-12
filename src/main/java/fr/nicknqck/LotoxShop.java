@@ -4,9 +4,9 @@ import fr.mrmicky.fastboard.FastBoard;
 import fr.nicknqck.listeners.PlayerListeners;
 import fr.nicknqck.listeners.SellMarket;
 import fr.nicknqck.listeners.buy.BuyMarket;
-import fr.nicknqck.listeners.buy.equipement.EffetMarket;
+import fr.nicknqck.listeners.buy.potion.EffetMarket;
 import fr.nicknqck.listeners.buy.equipement.EquipementMarket;
-import fr.nicknqck.listeners.buy.equipement.SellablePotions;
+import fr.nicknqck.listeners.buy.potion.SellablePotions;
 import fr.nicknqck.utils.*;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -83,11 +83,14 @@ public final class LotoxShop extends JavaPlugin {
         for (SellablePotions sellablePotions : SellablePotions.values()){
             if (sellablePotions.getEffectType().equals(potionEffectType)){
                 playerDataMap.get(uuid).setAmountPotionPurchase(playerDataMap.get(uuid).getAmountPotionPurchase()+1);
-                Map<PotionEffectType, Integer> effectTypes = playerDataMap.get(uuid).getEffects();
-                if (effectTypes.containsKey(potionEffectType)) {
-                    effectTypes.remove(potionEffectType, effectTypes.get(potionEffectType));
-                }
+                int lvl = 0;
+                if (playerDataMap.get(uuid).getEffects().containsKey(potionEffectType)) {
+                    lvl = playerDataMap.get(uuid).getEffects().get(potionEffectType);
+                    playerDataMap.get(uuid).getEffects().remove(potionEffectType, lvl);
 
+                }
+                playerDataMap.get(uuid).getEffects().put(potionEffectType, lvl);
+                LotoxShop.getInstance().getPlayerDataManager().saveData(playerDataMap);
                 break;
             }
         }

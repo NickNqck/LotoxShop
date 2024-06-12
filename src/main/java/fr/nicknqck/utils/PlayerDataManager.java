@@ -7,10 +7,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerDataManager {
 
@@ -78,14 +75,8 @@ public class PlayerDataManager {
             int shopAmount = config.getInt(key + ".shopAmount");
             int achatAmount = config.getInt(key+ ".achatAmount");
             int achatPotionAmount = potionsConfig.getInt(key+ ".achatPotionAmount");
-            List<String> a = potionsConfig.getComments(key + ".effects");
-            List<PotionEffectType> effects = new ArrayList<>();
-            for (String string : a){
-                if (PotionEffectType.getByName(string) != null){
-                    effects.add(PotionEffectType.getByName(string));
-                }
-            }
-            playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount, achatAmount, achatPotionAmount, effects));
+
+            playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount, achatAmount, achatPotionAmount, new HashMap<>()));
         }
     }
 }

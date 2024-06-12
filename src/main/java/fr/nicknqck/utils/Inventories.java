@@ -1,7 +1,7 @@
 package fr.nicknqck.utils;
 
 import fr.nicknqck.LotoxShop;
-import fr.nicknqck.listeners.buy.equipement.SellablePotions;
+import fr.nicknqck.listeners.buy.potion.SellablePotions;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
