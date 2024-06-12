@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.Potion;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffectType;
 
 public class EffetMarket implements Listener {
@@ -33,21 +33,23 @@ public class EffetMarket implements Listener {
                 }
                 if (item.getType().equals(Material.POTION)){
                     try {
-                        @SuppressWarnings("deprecation")
-                        Potion potion = Potion.fromItemStack(item);
-
-                        PotionEffectType potionEffectType = potion.getType().getEffectType();
-                        int playerPotionLevel = LotoxShop.getInstance().getPotionEffectLevel(player, potionEffectType);
-                        int maxPotionLevel = SellablePotions.getSellable(potionEffectType).getMax();
-
-                        if (playerPotionLevel < maxPotionLevel) {
-                            if (LotoxShop.getInstance().sellItem(player, item, false)) {
-                                LotoxShop.getInstance().addEffects(player.getUniqueId(), potionEffectType);
-                            } else {
-                                player.sendMessage("§cVous n'avez pas assez d'argent !");
+                        if (item.getItemMeta() instanceof PotionMeta meta){
+                            if (meta.hasCustomEffects()){
+                                if (!meta.getCustomEffects().isEmpty() && meta.getCustomEffects().get(0) != null){
+                                    PotionEffectType potionEffectType = meta.getCustomEffects().get(0).getType();
+                                    int playerPotionLevel = LotoxShop.getInstance().getPotionEffectLevel(player, potionEffectType);
+                                    int maxPotionLevel = SellablePotions.getSellable(potionEffectType).getMax();
+                                    if (playerPotionLevel < maxPotionLevel) {
+                                        if (LotoxShop.getInstance().sellItem(player, item, false)) {
+                                            LotoxShop.getInstance().addEffects(player.getUniqueId(), potionEffectType);
+                                        } else {
+                                            player.sendMessage("§cVous n'avez pas assez d'argent !");
+                                        }
+                                    } else {
+                                        player.sendMessage("§cVous avez déjà atteint le niveau maximum pour cet effet de potion !");
+                                    }
+                                }
                             }
-                        } else {
-                            player.sendMessage("§cVous avez déjà atteint le niveau maximum pour cet effet de potion !");
                         }
 
                         LotoxShop.getInstance().getInventories().openEffetMarketInventory(player);

@@ -73,20 +73,21 @@ public final class LotoxShop extends JavaPlugin {
     }
     public void setCoins(UUID uuid, int coins){
         if (!playerDataMap.containsKey(uuid)){
-            playerDataMap.put(uuid, new PlayerData(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName(), Objects.requireNonNull(Bukkit.getPlayer(uuid)).isOp(), 0, 0, 0));
+            playerDataMap.put(uuid, new PlayerData(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName(), Objects.requireNonNull(Bukkit.getPlayer(uuid)).isOp(), 0, 0, 0, null));
         }
         playerDataMap.get(uuid).setCoins(coins);
         getPlayerDataManager().saveData(playerDataMap);
     }
     public void addEffects(UUID uuid, PotionEffectType potionEffectType){
-        if (!playerDataMap.containsKey(uuid)){
-            playerDataMap.put(uuid, new PlayerData(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName(), Objects.requireNonNull(Bukkit.getPlayer(uuid)).isOp(), 0, 0, 0));
-        }
+        addCoins(uuid, 0);
         for (SellablePotions sellablePotions : SellablePotions.values()){
             if (sellablePotions.getEffectType().equals(potionEffectType)){
-                if (potionEffectType.equals(PotionEffectType.FAST_DIGGING)){
-                    playerDataMap.get(uuid).setHasteLevel(playerDataMap.get(uuid).getHasteLevel()+1);
+                playerDataMap.get(uuid).setAmountPotionPurchase(playerDataMap.get(uuid).getAmountPotionPurchase()+1);
+                Map<PotionEffectType, Integer> effectTypes = playerDataMap.get(uuid).getEffects();
+                if (effectTypes.containsKey(potionEffectType)) {
+                    effectTypes.remove(potionEffectType, effectTypes.get(potionEffectType));
                 }
+
                 break;
             }
         }
