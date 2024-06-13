@@ -1,4 +1,4 @@
-package fr.nicknqck.listeners.buy;
+package fr.nicknqck.listeners.buy.food;
 
 import fr.nicknqck.LotoxShop;
 import org.bukkit.Material;
@@ -8,7 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class BuyMarket implements Listener {
+public class FoodMarket implements Listener {
+
 
     @EventHandler
     private void onInventoryClick(InventoryClickEvent event){
@@ -23,29 +24,14 @@ public class BuyMarket implements Listener {
             String name = event.getView().getTitle();
             ItemStack item = event.getCurrentItem();
             if (!item.hasItemMeta())return;
-            if (name.contains("§c§n§lAcheter§7 -§6 ")){
+            if (name.contains("§c§n§lNouriturre§7 -§6")){
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
-                    LotoxShop.getInstance().getInventories().openBasicMarketInventory(player);
+                    LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
-                switch (item.getType()){
-                    case BOOK,POTION:
-                        player.sendMessage("§cFeature pas encore dev...");
-                        break;
-                    case ARMOR_STAND:
-                        LotoxShop.getInstance().getInventories().openEquipementMarketInventory(player);
-                        break;
-                    case ARROW:
-                        LotoxShop.getInstance().getInventories().openConssomableMarketInventory(player);
-                        break;
-                    case BRICKS:
-                        LotoxShop.getInstance().getInventories().openBlocsMarketInventory(player);
-                        break;
-                    case COOKED_BEEF:
-                        LotoxShop.getInstance().getInventories().openFoodBuyMarketInventory(player);
-                        break;
-                }
+                LotoxShop.getInstance().trySelling(player, item);
+                LotoxShop.getInstance().getInventories().openFoodBuyMarketInventory(player);
                 event.setCancelled(true);
             }
         }

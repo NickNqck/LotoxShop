@@ -5,10 +5,12 @@ import fr.nicknqck.listeners.PlayerListeners;
 import fr.nicknqck.listeners.SellMarket;
 import fr.nicknqck.listeners.buy.BuyMarket;
 import fr.nicknqck.listeners.buy.blocs.BlocsMarket;
-import fr.nicknqck.listeners.buy.conssumable.ConssumableMarket;
+import fr.nicknqck.listeners.buy.conssumable.ConssomableMarket;
+import fr.nicknqck.listeners.buy.food.FoodMarket;
 import fr.nicknqck.listeners.buy.potion.EffetMarket;
 import fr.nicknqck.listeners.buy.equipement.EquipementMarket;
 import fr.nicknqck.listeners.buy.potion.SellablePotions;
+import fr.nicknqck.listeners.customevents.onSecondEvent;
 import fr.nicknqck.utils.*;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -34,7 +36,7 @@ public final class LotoxShop extends JavaPlugin {
     private final Map<UUID, PlayerData> playerDataMap = new HashMap<>();
     @Getter
     private final Map<UUID, FastBoard> boards = new HashMap<>();
-
+    public static Random RANDOM = new Random();
     @Override
     public void onEnable() {
         instance = this;
@@ -49,6 +51,7 @@ public final class LotoxShop extends JavaPlugin {
         getServer().getScheduler().runTaskTimer(this, () -> {
             for (FastBoard board : this.boards.values()) {
                 updateBoard(board);
+                Bukkit.getPluginManager().callEvent(new onSecondEvent());
             }
         }, 0, 20);
     }
@@ -65,8 +68,9 @@ public final class LotoxShop extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BuyMarket(), this);
         getServer().getPluginManager().registerEvents(new EquipementMarket(), this);
         getServer().getPluginManager().registerEvents(new EffetMarket(), this);
-        getServer().getPluginManager().registerEvents(new ConssumableMarket(), this);
+        getServer().getPluginManager().registerEvents(new ConssomableMarket(), this);
         getServer().getPluginManager().registerEvents(new BlocsMarket(), this);
+        getServer().getPluginManager().registerEvents(new FoodMarket(), this);
     }
     public void addCoins(UUID uuid, int coins){
         if (playerDataMap.containsKey(uuid)){

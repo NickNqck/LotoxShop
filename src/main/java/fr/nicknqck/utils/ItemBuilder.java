@@ -1,10 +1,13 @@
 package fr.nicknqck.utils;
 
+import fr.nicknqck.listeners.PlayerListeners;
+import fr.nicknqck.listeners.customevents.onSecondEvent;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.*;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * Easily create itemstacks, without messing your hands.
@@ -24,6 +28,7 @@ import java.util.Map;
  */
 public class ItemBuilder {
     protected ItemStack is;
+
     /**
      * Create a new ItemBuilder from scratch.
      * @param m The material to create the ItemBuilder with.
@@ -155,12 +160,14 @@ public class ItemBuilder {
      */
     public ItemBuilder setLore(String... lore){
         ItemMeta im = is.getItemMeta();
+        assert im != null;
         im.setLore(Arrays.asList(lore));
         is.setItemMeta(im);
         return this;
     }
     public ItemBuilder setPrice(int price){
         ItemMeta im = is.getItemMeta();
+        assert im != null;
         im.setLore(Arrays.asList("","§6Prix: "+price));
         is.setItemMeta(im);
         return this;
@@ -171,6 +178,7 @@ public class ItemBuilder {
      */
     public ItemBuilder setLore(List<String> lore) {
         ItemMeta im = is.getItemMeta();
+        assert im != null;
         im.setLore(lore);
         is.setItemMeta(im);
         return this;
@@ -181,6 +189,7 @@ public class ItemBuilder {
      */
     public ItemBuilder removeLoreLine(String line){
         ItemMeta im = is.getItemMeta();
+        assert im != null;
         List<String> lore = new ArrayList<>(im.getLore());
         if(!lore.contains(line))return this;
         lore.remove(line);
@@ -194,6 +203,7 @@ public class ItemBuilder {
      */
     public ItemBuilder removeLoreLine(int index){
         ItemMeta im = is.getItemMeta();
+        assert im != null;
         List<String> lore = new ArrayList<>(im.getLore());
         if(index<0||index>lore.size())return this;
         lore.remove(index);
@@ -208,6 +218,7 @@ public class ItemBuilder {
     public ItemBuilder addLoreLine(String line){
         ItemMeta im = is.getItemMeta();
         List<String> lore = new ArrayList<>();
+        assert im != null;
         if(im.hasLore())lore = new ArrayList<>(im.getLore());
         lore.add(line);
         im.setLore(lore);
@@ -221,6 +232,7 @@ public class ItemBuilder {
      */
     public ItemBuilder addLoreLine(String line, int pos){
         ItemMeta im = is.getItemMeta();
+        assert im != null;
         List<String> lore = new ArrayList<>(im.getLore());
         lore.set(pos, line);
         im.setLore(lore);
@@ -288,12 +300,14 @@ public class ItemBuilder {
 
     public ItemBuilder hideEnchantAttributes() {
         ItemMeta itemMeta = this.is.getItemMeta();
+        assert itemMeta != null;
         itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         this.is.setItemMeta(itemMeta);
         return this;
     }
     public ItemBuilder hideAttributes(ItemFlag... a) {
         ItemMeta itemMeta = this.is.getItemMeta();
+        assert itemMeta != null;
         itemMeta.addItemFlags(a);
         this.is.setItemMeta(itemMeta);
         return this;
@@ -305,6 +319,7 @@ public class ItemBuilder {
     public ItemBuilder addPattern(Pattern pattern){
         try{
             BannerMeta meta = (BannerMeta) is.getItemMeta();
+            assert meta != null;
             meta.addPattern(pattern);
             is.setItemMeta(meta);
         }catch (ClassCastException ignored){}
@@ -323,6 +338,7 @@ public class ItemBuilder {
     public ItemBuilder addStoredEnchantment(Enchantment ench, int i) {
         try{
             EnchantmentStorageMeta meta = (EnchantmentStorageMeta) is.getItemMeta();
+            assert meta != null;
             meta.addStoredEnchant(ench, i, true);
             is.setItemMeta(meta);
         }catch (ClassCastException ignored){}
@@ -336,6 +352,18 @@ public class ItemBuilder {
             meta.addCustomEffect(potionEffect, true);
             is.setItemMeta(meta);
         }catch (ClassCastException ignored){}
+        return this;
+    }
+    public ItemBuilder setOnSeconde(Consumer<onSecondEvent> consumer){
+        if (consumer != null){
+            PlayerListeners.getInstance().getOnSecondConsumers().add(consumer);
+        }
+        return this;
+    }
+    public ItemBuilder setOnDamage(Consumer<EntityDamageByEntityEvent> consumer){
+        if (consumer != null){
+            PlayerListeners.getInstance().getOnEntityDamageByEntityConsumers().add(consumer);
+        }
         return this;
     }
 }

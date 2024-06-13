@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class ConssumableMarket implements Listener {
+public class ConssomableMarket implements Listener {
 
     @EventHandler
     private void onInventoryClick(InventoryClickEvent event){
@@ -23,14 +23,14 @@ public class ConssumableMarket implements Listener {
             String name = event.getView().getTitle();
             ItemStack item = event.getCurrentItem();
             if (!item.hasItemMeta())return;
-            if (name.contains("§c§n§lConssumables§7 -§6 ")){
+            if (name.contains("§c§n§lConssomables§7 -§6 ")){
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
                     LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
                 LotoxShop.getInstance().trySelling(player, item);
-                LotoxShop.getInstance().getInventories().openConssumabletMarketInventory(player);
+                LotoxShop.getInstance().getInventories().openConssomableMarketInventory(player);
                 event.setCancelled(true);
             }
         }
