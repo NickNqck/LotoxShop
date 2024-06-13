@@ -36,9 +36,8 @@ public class Inventories {
         for (int i = 17; i <= 26; i += 9) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
-        inv.setItem(11, new ItemBuilder(Material.IRON_INGOT).setName("§c-1").setAmount(1).toItemStack());
-        inv.setItem(13, new ItemBuilder(Material.IRON_INGOT).setName("§c-16").setAmount(16).toItemStack());
-        inv.setItem(15, new ItemBuilder(Material.IRON_INGOT).setName("§c-32").setAmount(32).toItemStack());
+
+        inv.setItem(13, new ItemBuilder(Material.IRON_INGOT).setName("§r§fVendre tout").setAmount(64).toItemStack());
         inv.setItem(22, getReturnArrow());
         player.openInventory(inv);
     }
@@ -58,9 +57,7 @@ public class Inventories {
         for (int i = 17; i <= 26; i += 9) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
-        inv.setItem(11, new ItemBuilder(Material.GOLD_INGOT).setName("§c-1").setAmount(1).toItemStack());
-        inv.setItem(13, new ItemBuilder(Material.GOLD_INGOT).setName("§c-16").setAmount(16).toItemStack());
-        inv.setItem(15, new ItemBuilder(Material.GOLD_INGOT).setName("§c-32").setAmount(32).toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.GOLD_INGOT).setName("§r§fVendre tout").setAmount(64).toItemStack());
         inv.setItem(22, getReturnArrow());
         player.openInventory(inv);
     }
@@ -80,9 +77,7 @@ public class Inventories {
         for (int i = 17; i <= 26; i += 9) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
-        inv.setItem(11, new ItemBuilder(Material.DIAMOND).setName("§c-1").setAmount(1).toItemStack());
-        inv.setItem(13, new ItemBuilder(Material.DIAMOND).setName("§c-16").setAmount(16).toItemStack());
-        inv.setItem(15, new ItemBuilder(Material.DIAMOND).setName("§c-32").setAmount(32).toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.DIAMOND).setName("§r§fVendre tout").setAmount(64).toItemStack());
         inv.setItem(22, getReturnArrow());
         player.openInventory(inv);
     }
@@ -102,9 +97,7 @@ public class Inventories {
         for (int i = 17; i <= 26; i += 9) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
-        inv.setItem(11, new ItemBuilder(Material.EMERALD).setName("§c-1").setAmount(1).toItemStack());
-        inv.setItem(13, new ItemBuilder(Material.EMERALD).setName("§c-16").setAmount(16).toItemStack());
-        inv.setItem(15, new ItemBuilder(Material.EMERALD).setName("§c-32").setAmount(32).toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.EMERALD).setName("§r§fVendre tout").setAmount(64).toItemStack());
         inv.setItem(22, getReturnArrow());
         player.openInventory(inv);
     }

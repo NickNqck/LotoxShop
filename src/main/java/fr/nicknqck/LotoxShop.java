@@ -62,6 +62,7 @@ public final class LotoxShop extends JavaPlugin {
     private void registerCommands(){
         Objects.requireNonNull(getServer().getPluginCommand("market")).setExecutor(new MarketCommand());
         Objects.requireNonNull(getServer().getPluginCommand("pay")).setExecutor(new PayCommand());
+        Objects.requireNonNull(getServer().getPluginCommand("furnace")).setExecutor(new FurnaceCommand());
     }
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
@@ -131,20 +132,6 @@ public final class LotoxShop extends JavaPlugin {
             }
         }
         return toReturn;
-    }
-    public ItemStack removeItem(Player player, Material material, int remove) {
-        //Methode is from UHC_MEETUP, owned by NickNqck
-        ItemStack item = player.getInventory().getItem(player.getInventory().first(material));
-        assert item != null;
-        if (item.getAmount() <= remove) {
-            player.getInventory().removeItem(item);
-            return item;
-        }
-        item.setAmount(item.getAmount() - remove);
-        if (remove > 64) {
-            item.setAmount(item.getAmount() - (remove - 64));
-        }
-        return item;
     }
     public void giveItem(Player target, Material material, int amount) {
             if (countEmptySlots(target) > 0) {

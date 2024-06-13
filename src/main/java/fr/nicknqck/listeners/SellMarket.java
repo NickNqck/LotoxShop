@@ -50,13 +50,11 @@ public class SellMarket implements Listener {
                     LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
                     return;
                 }
-                int amount = item.getAmount();
                 int zAMOUNT = LotoxShop.getInstance().getItemAmount(player, Material.IRON_INGOT);
-                if (amount <= zAMOUNT){
-                    ItemStack sell = LotoxShop.getInstance().removeItem(player, Material.IRON_INGOT, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (sell.getAmount()*10));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(sell.getAmount()*10)+"💰");
-                }
+                player.getInventory().remove(item.getType());
+                int sell = zAMOUNT*10;
+                LotoxShop.getInstance().addCoins(player.getUniqueId(), sell);
+                player.sendMessage("§aVotre vente vous a fait gagner, §6"+sell+" coins");
                 LotoxShop.getInstance().getInventories().openIronSellInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§a§n§lOr§7 -§6 ")) {
@@ -68,13 +66,11 @@ public class SellMarket implements Listener {
                     LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
                     return;
                 }
-                int amount = item.getAmount();
                 int zAMOUNT = LotoxShop.getInstance().getItemAmount(player, Material.GOLD_INGOT);
-                if (amount <= zAMOUNT){
-                    ItemStack sell = LotoxShop.getInstance().removeItem(player, Material.GOLD_INGOT, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (sell.getAmount()*50));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(sell.getAmount()*50)+"💰");
-                }
+                player.getInventory().remove(item.getType());
+                int sell = zAMOUNT*50;
+                LotoxShop.getInstance().addCoins(player.getUniqueId(), sell);
+                player.sendMessage("§aVotre vente vous a fait gagner, §6"+sell+" coins");
                 LotoxShop.getInstance().getInventories().openGoldSellInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§a§n§lDiamant§7 -§6 ")) {
@@ -86,13 +82,11 @@ public class SellMarket implements Listener {
                     LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
                     return;
                 }
-                int amount = item.getAmount();
                 int zAMOUNT = LotoxShop.getInstance().getItemAmount(player, Material.DIAMOND);
-                if (amount <= zAMOUNT){
-                    ItemStack sell = LotoxShop.getInstance().removeItem(player, Material.DIAMOND, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (sell.getAmount()*150));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(sell.getAmount()*150)+"💰");
-                }
+                player.getInventory().remove(item.getType());
+                int sell = zAMOUNT*150;
+                LotoxShop.getInstance().addCoins(player.getUniqueId(), sell);
+                player.sendMessage("§aVotre vente vous a fait gagner, §6"+sell+" coins");
                 LotoxShop.getInstance().getInventories().openDiamondSellInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§a§n§lÉmeraude§7 -§6 ")) {
@@ -104,13 +98,11 @@ public class SellMarket implements Listener {
                     LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
                     return;
                 }
-                int amount = item.getAmount();
-                int zAMOUNT =LotoxShop.getInstance(). getItemAmount(player, Material.EMERALD);
-                if (amount <= zAMOUNT){
-                    ItemStack sell = LotoxShop.getInstance().removeItem(player, Material.EMERALD, amount);
-                    LotoxShop.getInstance().addCoins(player.getUniqueId(), (sell.getAmount()*100));
-                    player.sendMessage("§aSuite a votre vente,vos gains s'elèvent a §6"+(sell.getAmount()*100)+"💰");
-                }
+                int zAMOUNT = LotoxShop.getInstance().getItemAmount(player, Material.EMERALD);
+                player.getInventory().remove(item.getType());
+                int sell = zAMOUNT*100;
+                LotoxShop.getInstance().addCoins(player.getUniqueId(), sell);
+                player.sendMessage("§aVotre vente vous a fait gagner, §6"+sell+" coins");
                 LotoxShop.getInstance().getInventories().openEmeraldSellInventory(player);
                 event.setCancelled(true);
             }

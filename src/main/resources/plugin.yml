@@ -9,3 +9,5 @@ commands:
     description: the access to the plugin market
   pay:
     description: To pay
+  furnace:
+    description: To cook what you want

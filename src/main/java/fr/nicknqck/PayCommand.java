@@ -14,6 +14,10 @@ public class PayCommand implements CommandExecutor {
                 Player target = Bukkit.getPlayer(args[0]);
                 if (target != null){
                     int montant = Integer.parseInt(args[1]);
+                    if (montant < 0){
+                        sender.sendMessage("§cLe montant ne peux pas être en dessous de 0");
+                        return true;
+                    }
                     if (LotoxShop.getInstance().getPlayerDataMap().get(sender.getUniqueId()).getCoins() >= montant){
                         LotoxShop.getInstance().addCoins(sender.getUniqueId(), -montant);
                         LotoxShop.getInstance().addCoins(target.getUniqueId(), montant);
