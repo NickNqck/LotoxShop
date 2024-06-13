@@ -356,13 +356,17 @@ public class ItemBuilder {
     }
     public ItemBuilder setOnSeconde(Consumer<onSecondEvent> consumer){
         if (consumer != null){
-            PlayerListeners.getInstance().getOnSecondConsumers().add(consumer);
+            if (!PlayerListeners.getInstance().getOnSecondConsumers().contains(consumer)){
+                PlayerListeners.getInstance().getOnSecondConsumers().add(consumer);
+            }
         }
         return this;
     }
     public ItemBuilder setOnDamage(Consumer<EntityDamageByEntityEvent> consumer){
         if (consumer != null){
-            PlayerListeners.getInstance().getOnEntityDamageByEntityConsumers().add(consumer);
+            if (!PlayerListeners.getInstance().getOnEntityDamageByEntityConsumers().contains(consumer)){
+                PlayerListeners.getInstance().getOnEntityDamageByEntityConsumers().add(consumer);
+            }
         }
         return this;
     }

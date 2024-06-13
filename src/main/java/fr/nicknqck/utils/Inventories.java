@@ -316,6 +316,7 @@ public class Inventories {
                 .addEnchant(Enchantment.OXYGEN, 3)
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.GOLDEN_HELMET).setName("§eCasque §ed'Hermes").addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
@@ -341,6 +342,7 @@ public class Inventories {
                 .addEnchant(Enchantment.PROTECTION_PROJECTILE, 5)
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.GOLDEN_CHESTPLATE).setName("§ePlastron §ed'Hermes").addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
@@ -537,6 +539,7 @@ public class Inventories {
                 .addEnchant(Enchantment.PROTECTION_PROJECTILE, 5)
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.GOLDEN_LEGGINGS).setName("§eJambières §ed'Hermes").addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
@@ -562,6 +565,25 @@ public class Inventories {
                 .addEnchant(Enchantment.PROTECTION_PROJECTILE, 5)
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.GOLDEN_BOOTS).setName("§eBottes §ed'Hermes").setOnSeconde(event -> {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                int amountPiece = 0;
+                for (ItemStack stack : p.getInventory().getArmorContents()) {
+                    if (stack != null){
+                        if (stack.hasItemMeta()){
+                            if (Objects.requireNonNull(stack.getItemMeta()).hasDisplayName()){
+                                if (stack.getItemMeta().getDisplayName().contains("§ed'Hermes")){
+                                    amountPiece++;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (amountPiece > 0){
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 60, amountPiece-1, false, false));
+                }
+            }
+        }).addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
