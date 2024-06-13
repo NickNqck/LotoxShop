@@ -42,6 +42,7 @@ public class MarketCommand implements CommandExecutor, Listener {
                                 "",
                                 "§7 -§6 /market add <joueur> <nombre>§f: Permet d'ajouter le nombre de coins voulu au joueur viser§7 (§cAdmin Command§7)"
                         );
+                        return true;
                     }
                     if (args[0].equalsIgnoreCase("list")){
                         final Map<String, Integer> map = new HashMap<>();
@@ -57,6 +58,7 @@ public class MarketCommand implements CommandExecutor, Listener {
                         for (Map.Entry<String, Integer> entry : sortedEntries) {
                             player.sendMessage("§7 - §6" + entry.getKey() + " possède §6" + entry.getValue() + " coins");
                         }
+                        return true;
                     }
                 } else if (args.length == 2) {
                     if (args[0].equalsIgnoreCase("get")) {
@@ -95,8 +97,11 @@ public class MarketCommand implements CommandExecutor, Listener {
                     }
                 }
             }
+        } else {
+            System.out.println("Impossible de faire cette commande via la console");
+            return true;
         }
-        System.out.println("Impossible de faire cette commande via la console");
+
         return false;
     }
     @EventHandler
@@ -104,14 +109,14 @@ public class MarketCommand implements CommandExecutor, Listener {
         if (event.getClickedInventory() == null)return;
         if (event.getCurrentItem() == null)return;
         if (event.getCurrentItem().getType().equals(Material.AIR))return;
-        if (event.getCurrentItem().getType().name().contains("GLASS")) {
-            event.setCancelled(true);
-            return;
-        }
         if (event.getWhoClicked() instanceof Player player){
             String name = event.getView().getTitle();
             ItemStack item = event.getCurrentItem();
             if (name.contains("§6§n§lMarket§r§7 -§6 ")){
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getSellMarket())){
                     LotoxShop.getInstance().getInventories().openSellMarketInventory(player);
                     event.setCancelled(true);

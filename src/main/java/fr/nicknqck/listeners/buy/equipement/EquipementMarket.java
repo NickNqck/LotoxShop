@@ -15,15 +15,15 @@ public class EquipementMarket implements Listener {
         if (event.getClickedInventory() == null) return;
         if (event.getCurrentItem() == null) return;
         if (event.getCurrentItem().getType().equals(Material.AIR)) return;
-        if (event.getCurrentItem().getType().name().contains("GLASS")) {
-            event.setCancelled(true);
-            return;
-        }
         if (event.getWhoClicked() instanceof Player player) {
             String name = event.getView().getTitle();
             ItemStack item = event.getCurrentItem();
             if (!item.hasItemMeta()) return;
             if (name.contains("§c§n§lÉquipement§7 -§6 ")) {
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
@@ -51,57 +51,81 @@ public class EquipementMarket implements Listener {
                 }
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lÉpées§7 -§6 ")) {
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openEquipementMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
-                LotoxShop.getInstance().trySelling(player, item);
+                LotoxShop.getInstance().tryBuying(player, item);
                 LotoxShop.getInstance().getInventories().openSwordsBuyMarketInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lPlastrons§7 -§6 ")) {
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openEquipementMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
-                LotoxShop.getInstance().trySelling(player, item);
+                LotoxShop.getInstance().tryBuying(player, item);
                 LotoxShop.getInstance().getInventories().openChestPlateBuyMarketInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lCasques§7 -§6 ")) {
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openEquipementMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
-                LotoxShop.getInstance().trySelling(player, item);
+                LotoxShop.getInstance().tryBuying(player, item);
                 LotoxShop.getInstance().getInventories().openHelmetsBuyMarketInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lBow§7 -§6 ")) {
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openEquipementMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
-                LotoxShop.getInstance().trySelling(player, item);
+                LotoxShop.getInstance().tryBuying(player, item);
                 LotoxShop.getInstance().getInventories().openBowBuyMarketInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lPioches§7 -§6 ")) {
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openEquipementMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
-                LotoxShop.getInstance().trySelling(player, item);
+                LotoxShop.getInstance().tryBuying(player, item);
                 LotoxShop.getInstance().getInventories().openPickaxeBuyMarketInventory(player);
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lJambières§7 -§6 ")) {
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openEquipementMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
-                LotoxShop.getInstance().trySelling(player, item);
+                LotoxShop.getInstance().tryBuying(player, item);
                 LotoxShop.getInstance().getInventories().openLeggingsBuyMarketInventory(player);
                 event.setCancelled(true);
 

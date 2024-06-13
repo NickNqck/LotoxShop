@@ -7,3 +7,5 @@ description: A simple minecraft market plugin for Lotox
 commands:
   market:
     description: the access to the plugin market
+  pay:
+    description: To pay

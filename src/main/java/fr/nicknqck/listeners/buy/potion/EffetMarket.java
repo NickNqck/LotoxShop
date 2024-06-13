@@ -1,7 +1,6 @@
 package fr.nicknqck.listeners.buy.potion;
 
 import fr.nicknqck.LotoxShop;
-import fr.nicknqck.listeners.buy.potion.SellablePotions;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,15 +17,15 @@ public class EffetMarket implements Listener {
         if (event.getClickedInventory() == null)return;
         if (event.getCurrentItem() == null)return;
         if (event.getCurrentItem().getType().equals(Material.AIR))return;
-        if (event.getCurrentItem().getType().name().contains("GLASS")) {
-            event.setCancelled(true);
-            return;
-        }
         if (event.getWhoClicked() instanceof Player player){
             String name = event.getView().getTitle();
             ItemStack item = event.getCurrentItem();
             if (!item.hasItemMeta())return;
             if (name.contains("§c§n§lEffets§7 -§6 ")){
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())) {
                     LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
@@ -41,7 +40,7 @@ public class EffetMarket implements Listener {
                                     int playerPotionLevel = LotoxShop.getInstance().getPotionEffectLevel(player, potionEffectType);
                                     int maxPotionLevel = SellablePotions.getSellable(potionEffectType).getMax();
                                     if (playerPotionLevel < maxPotionLevel) {
-                                        if (LotoxShop.getInstance().sellItem(player, item, false)) {
+                                        if (LotoxShop.getInstance().buyItem(player, item, false)) {
                                             LotoxShop.getInstance().addEffects(player.getUniqueId(), potionEffectType);
                                         } else {
                                             player.sendMessage("§cVous n'avez pas assez d'argent !");

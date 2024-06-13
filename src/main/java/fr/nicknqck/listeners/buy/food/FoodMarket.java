@@ -16,21 +16,21 @@ public class FoodMarket implements Listener {
         if (event.getClickedInventory() == null)return;
         if (event.getCurrentItem() == null)return;
         if (event.getCurrentItem().getType().equals(Material.AIR))return;
-        if (event.getCurrentItem().getType().name().contains("GLASS")) {
-            event.setCancelled(true);
-            return;
-        }
         if (event.getWhoClicked() instanceof Player player){
             String name = event.getView().getTitle();
             ItemStack item = event.getCurrentItem();
             if (!item.hasItemMeta())return;
             if (name.contains("§c§n§lNouriturre§7 -§6")){
+                if (event.getCurrentItem().getType().name().contains("GLASS")) {
+                    event.setCancelled(true);
+                    return;
+                }
                 if (item.isSimilar(LotoxShop.getInstance().getInventories().getReturnArrow())){
                     LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
                     event.setCancelled(true);
                     return;
                 }
-                LotoxShop.getInstance().trySelling(player, item);
+                LotoxShop.getInstance().tryBuying(player, item);
                 LotoxShop.getInstance().getInventories().openFoodBuyMarketInventory(player);
                 event.setCancelled(true);
             }

@@ -61,6 +61,7 @@ public final class LotoxShop extends JavaPlugin {
     }
     private void registerCommands(){
         Objects.requireNonNull(getServer().getPluginCommand("market")).setExecutor(new MarketCommand());
+        Objects.requireNonNull(getServer().getPluginCommand("pay")).setExecutor(new PayCommand());
     }
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
@@ -119,8 +120,6 @@ public final class LotoxShop extends JavaPlugin {
                 "§7§l・§cMorts: " + board.getPlayer().getStatistic(Statistic.DEATHS),
                 "§7§l・§9Joueurs: §b" + Bukkit.getOnlinePlayers().size(),
                 "§7§l・§9Temps de jeu: §e" + StringUtils.secondsTowardsBeautifulinScoreboard(board.getPlayer().getStatistic(Statistic.PLAY_ONE_MINUTE)/20)
-
-
         );
     }
     public int getItemAmount(Player player, Material material) {
@@ -133,16 +132,19 @@ public final class LotoxShop extends JavaPlugin {
         }
         return toReturn;
     }
-    public void removeItem(Player player, Material material, int remove) {
+    public ItemStack removeItem(Player player, Material material, int remove) {
         //Methode is from UHC_MEETUP, owned by NickNqck
-        if (Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).getAmount() <= remove) {
-            player.getInventory().removeItem(player.getInventory().getItem(player.getInventory().first(material)));
-            return;
+        ItemStack item = player.getInventory().getItem(player.getInventory().first(material));
+        assert item != null;
+        if (item.getAmount() <= remove) {
+            player.getInventory().removeItem(item);
+            return item;
         }
-        Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).setAmount(Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).getAmount() - remove);
+        item.setAmount(item.getAmount() - remove);
         if (remove > 64) {
-            Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).setAmount(Objects.requireNonNull(player.getInventory().getItem(player.getInventory().first(material))).getAmount() - (remove - 64));
+            item.setAmount(item.getAmount() - (remove - 64));
         }
+        return item;
     }
     public void giveItem(Player target, Material material, int amount) {
             if (countEmptySlots(target) > 0) {
@@ -183,6 +185,9 @@ public final class LotoxShop extends JavaPlugin {
     public String getStringCoins(UUID uuid){
         return formatCoins(getPlayerDataMap().get(uuid).getCoins());
     }
+    public String getStringCoins(int montant){
+        return formatCoins(montant);
+    }
     private String formatCoins(int coins) {
         if (coins >= 1_000_000) {
             return String.format("%.1fM", coins / 1_000_000.0);
@@ -204,7 +209,7 @@ public final class LotoxShop extends JavaPlugin {
         }
         return 0;
     }
-    public boolean sellItem(Player player, ItemStack item, boolean give) {
+    public boolean buyItem(Player player, ItemStack item, boolean give) {
         addCoins(player.getUniqueId(), 0);
         int price = getPriceFromLore(Objects.requireNonNull(Objects.requireNonNull(item.getItemMeta()).getLore()));
         System.out.println("price: "+price);
@@ -218,9 +223,9 @@ public final class LotoxShop extends JavaPlugin {
         }
         return false;
     }
-    public void trySelling(Player player, ItemStack item){
+    public void tryBuying(Player player, ItemStack item){
         if (item.hasItemMeta() && Objects.requireNonNull(item.getItemMeta()).hasLore()){
-            if (LotoxShop.getInstance().sellItem(player, item, true)) {
+            if (LotoxShop.getInstance().buyItem(player, item, true)) {
                 player.sendMessage("§aVous avez acheter l'item: \""+(item.getItemMeta().hasDisplayName() ? item.getItemMeta().getDisplayName() : item.getType().name())+"§a\"");
             } else {
                 player.sendMessage("§cVous n'avez pas asser pour acheter cette objet !");
