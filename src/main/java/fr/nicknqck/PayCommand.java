@@ -21,7 +21,7 @@ public class PayCommand implements CommandExecutor {
                     if (LotoxShop.getInstance().getPlayerDataMap().get(sender.getUniqueId()).getCoins() >= montant){
                         LotoxShop.getInstance().addCoins(sender.getUniqueId(), -montant);
                         LotoxShop.getInstance().addCoins(target.getUniqueId(), montant);
-                        target.sendMessage("§c"+sender.getName()+"§f vous à offert§6 "+LotoxShop.getInstance().getStringCoins(montant));
+                        target.sendMessage("§c"+sender.getName()+"§f vous a fait un virrement§6 "+LotoxShop.getInstance().getStringCoins(montant));
                         sender.sendMessage("§c"+target.getName()+"§f à reçus un virrement de§6 "+LotoxShop.getInstance().getStringCoins(montant));
                         return true;
                     } else {
