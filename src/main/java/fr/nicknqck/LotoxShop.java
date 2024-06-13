@@ -4,6 +4,7 @@ import fr.mrmicky.fastboard.FastBoard;
 import fr.nicknqck.listeners.PlayerListeners;
 import fr.nicknqck.listeners.SellMarket;
 import fr.nicknqck.listeners.buy.BuyMarket;
+import fr.nicknqck.listeners.buy.blocs.BlocsMarket;
 import fr.nicknqck.listeners.buy.conssumable.ConssumableMarket;
 import fr.nicknqck.listeners.buy.potion.EffetMarket;
 import fr.nicknqck.listeners.buy.equipement.EquipementMarket;
@@ -65,6 +66,7 @@ public final class LotoxShop extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EquipementMarket(), this);
         getServer().getPluginManager().registerEvents(new EffetMarket(), this);
         getServer().getPluginManager().registerEvents(new ConssumableMarket(), this);
+        getServer().getPluginManager().registerEvents(new BlocsMarket(), this);
     }
     public void addCoins(UUID uuid, int coins){
         if (playerDataMap.containsKey(uuid)){

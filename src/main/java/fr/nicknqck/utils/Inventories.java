@@ -170,7 +170,7 @@ public class Inventories {
         inv.setItem(13, new ItemBuilder(Material.ARMOR_STAND).setName("§r§fÉquipement").toItemStack());
         inv.setItem(15, new ItemBuilder(Material.COOKED_BEEF).setName("§r§fNourriture").setLore("Pas encore développer...").toItemStack());
         inv.setItem(29, new ItemBuilder(Material.POTION).setLore("Pas encore développer...").hideAttributes(ItemFlag.HIDE_POTION_EFFECTS).setName("§r§fEffets").setPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20*60*8, 0, false, false)).toItemStack());
-        inv.setItem(31, new ItemBuilder(Material.BRICKS).setName("§r§fBlocs").setLore("Pas encore développer...").toItemStack());
+        inv.setItem(31, new ItemBuilder(Material.BRICKS).setName("§r§fBlocs").toItemStack());
         inv.setItem(33, new ItemBuilder(Material.ARROW).setName("§r§fConssumable").toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
@@ -250,7 +250,8 @@ public class Inventories {
                 .toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
-    }public void openChestPlateBuyMarketInventory(Player player) {
+    }
+    public void openChestPlateBuyMarketInventory(Player player) {
         Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lPlastrons§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         for (int i = 0; i <= 9; i += 7) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
@@ -274,7 +275,8 @@ public class Inventories {
                 .toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
-    }public void openBowBuyMarketInventory(Player player) {
+    }
+    public void openBowBuyMarketInventory(Player player) {
         Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lArc§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         for (int i = 0; i <= 9; i += 7) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
@@ -355,6 +357,36 @@ public class Inventories {
         inv.setItem(29, new ItemBuilder(Material.TOTEM_OF_UNDYING).setAmount(1).setName("§r§fTotem de résurrection").setPrice(17500).toItemStack());
         inv.setItem(31, new ItemBuilder(Material.NAME_TAG).setPrice(500).toItemStack());
         inv.setItem(33, new ItemBuilder(Material.BONE_MEAL).setPrice(750).setAmount(5).toItemStack());
+        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        player.openInventory(inv);
+    }
+    public void openBlocsMarketInventory(Player player){
+        Inventory inv = Bukkit.createInventory(player, 9*5, "§c§n§lBlocs§7 -§6 "+LotoxShop.getInstance().getStringCoins(player.getUniqueId())+" coins");
+        for (int i = 0; i <= 9; i+=7){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i+1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 36; i <= 45; i+=7){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i+1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 9; i <= 17; i+=8){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 27; i <= 35; i+=8){
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        inv.setItem(11, new ItemBuilder(Material.DIRT).setAmount(32).setPrice(80).toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.SAND).setAmount(32).setPrice(100).toItemStack());
+        inv.setItem(15, new ItemBuilder(Material.MAGMA_BLOCK).setAmount(16).setPrice(350).toItemStack());
+        inv.setItem(19, new ItemBuilder(Material.SCAFFOLDING).setAmount(8).setPrice(750).toItemStack());
+        inv.setItem(21, new ItemBuilder(Material.SEA_LANTERN).setAmount(8).setPrice(500).toItemStack());
+        inv.setItem(23, new ItemBuilder(Material.RESPAWN_ANCHOR).setPrice(7500).toItemStack());
+        inv.setItem(25, new ItemBuilder(Material.BEACON).setPrice(9000).toItemStack());
+        inv.setItem(29, new ItemBuilder(Material.CONDUIT).setAmount(12).setPrice(1250).toItemStack());
+        inv.setItem(31, new ItemBuilder(Material.SHULKER_BOX).setPrice(20000).toItemStack());
+        inv.setItem(33, new ItemBuilder(Material.CHERRY_LOG).setPrice(5000).setAmount(48).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
