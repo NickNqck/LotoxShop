@@ -558,7 +558,7 @@ public class Inventories {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
         inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        inv.setItem(11, new ItemBuilder(Material.IRON_LEGGINGS).setName("§lBottes d'Elfe").setPrice(5000)
+        inv.setItem(11, new ItemBuilder(Material.IRON_BOOTS).setName("§lBottes d'Elfe").setPrice(5000)
                 .addEnchant(Enchantment.PROTECTION_PROJECTILE, 5)
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
@@ -584,13 +584,30 @@ public class Inventories {
         }
         inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
-        inv.setItem(11, new ItemBuilder(Material.IRON_AXE).setName("§c§lHache D'apprenti").setPrice(1500)
+        inv.setItem(11, new ItemBuilder(Material.GOLDEN_AXE).setName("§c§lHache D'apprenti").setPrice(1500)
                 .addEnchant(Enchantment.DIG_SPEED, 2)
+                .addEnchant(Enchantment.DURABILITY, 1)
+                .toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.IRON_AXE).setName("§c§lHache d'amateur").setPrice(2500)
+                .addEnchant(Enchantment.DIG_SPEED, 3)
+                .addEnchant(Enchantment.DURABILITY, 2)
+                .toItemStack());
+        inv.setItem(15, new ItemBuilder(Material.DIAMOND_AXE).setName("§c§lHache de mec tros cool").setPrice(4000)
+                .addEnchant(Enchantment.DIG_SPEED, 4)
+                .addEnchant(Enchantment.DURABILITY, 2)
+                .toItemStack());
+        inv.setItem(19, new ItemBuilder(Material.DIAMOND_AXE).setName("§c§lHache de bdg").setPrice(5000)
+                .addEnchant(Enchantment.DIG_SPEED, 5)
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
-        inv.setItem(13, new ItemBuilder(Material.IRON_CHESTPLATE).setName("§c§lHache d'amateur").setLore("", "§6Prix: " + 7500 + " coins")
-                .addEnchant(Enchantment.PROTECTION_PROJECTILE, 5)
+        inv.setItem(21, new ItemBuilder(Material.WOODEN_AXE).setName("§c§lHache de pauvre").setPrice(500)
+                .addEnchant(Enchantment.DIG_SPEED, 7)
                 .addEnchant(Enchantment.DURABILITY, 3)
+                .toItemStack());
+        inv.setItem(23, new ItemBuilder(Material.IRON_AXE).setName("§c§lHache de gai").setPrice(3500)
+                .addEnchant(Enchantment.DIG_SPEED, 3)
+                .addEnchant(Enchantment.DURABILITY, 3)
+                .addEnchant(Enchantment.SILK_TOUCH, 1)
                 .toItemStack());
         player.openInventory(inv);
     }
@@ -613,27 +630,56 @@ public class Inventories {
         }
         inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        inv.setItem(11, new ItemBuilder(Material.GOLDEN_SHOVEL).setName("§c§lPelle d'apprenti").setPrice(1500)
+                .addEnchant(Enchantment.DIG_SPEED, 2)
+                .toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.IRON_SHOVEL).setName("§c§lPelle d'amateur").setPrice(3000)
+                .addEnchant(Enchantment.DIG_SPEED, 3)
+                .addEnchant(Enchantment.DURABILITY, 2)
+                .toItemStack());
+        inv.setItem(15, new ItemBuilder(Material.DIAMOND_SHOVEL).setName("§c§lPelle de fou").setPrice(5000)
+                .addEnchant(Enchantment.DIG_SPEED, 5)
+                .addEnchant(Enchantment.DURABILITY, 3)
+                .addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3)
+                .toItemStack());
+        inv.setItem(19, new ItemBuilder(Material.IRON_SHOVEL).setName("§c§lCoton tige").setPrice(2000)
+                .addEnchant(Enchantment.DIG_SPEED, 3)
+                .addEnchant(Enchantment.DURABILITY, 3)
+                .toItemStack());
 
         player.openInventory(inv);
     }
     public void openFishingRodBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lRods§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
+        Inventory inv = Bukkit.createInventory(player, 9 * 3, "§c§n§lRods§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         for (int i = 0; i <= 9; i += 7) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
             inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
+        for (int i = 9; i <= 18; i += 9) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
-        for (int i = 27; i <= 35; i += 8) {
+        for (int i = 19; i <= 25; i += 6) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        for (int i = 17; i <= 26; i += 9) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        inv.setItem(11, new ItemBuilder(Material.FISHING_ROD).setName("§l§rRod d'Apprenti Pecheur").setPrice(500)
+                .addEnchant(Enchantment.LUCK, 1)
+                .addEnchant(Enchantment.DURABILITY, 1)
+                .addEnchant(Enchantment.LURE, 1)
+                .toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.FISHING_ROD).setName("§l§rRod de Pecheur Experimenté").setPrice(2500)
+                .addEnchant(Enchantment.LUCK, 3)
+                .addEnchant(Enchantment.DURABILITY, 3)
+                .addEnchant(Enchantment.LURE, 3)
+                .toItemStack());
+        inv.setItem(15, new ItemBuilder(Material.FISHING_ROD).setName("§l§rRod de Poseidon").setPrice(15000)
+                .addEnchant(Enchantment.LUCK, 10)
+                .addEnchant(Enchantment.DURABILITY, 10)
+                .addEnchant(Enchantment.LURE, 10)
+                .toItemStack());
+        inv.setItem(22, getReturnArrow());
         player.openInventory(inv);
 }
 }
