@@ -31,7 +31,7 @@ public class EquipementMarket implements Listener {
                 }
                 switch (item.getType()) {
                     case NETHERITE_SWORD:
-                        LotoxShop.getInstance().getInventories().openSwordsBuyMarketInventory(player);
+                        player.openInventory(LotoxShop.getInstance().getInventories().openSwordsBuyMarketInventory(player));
                         break;
                     case NETHERITE_HELMET:
                         LotoxShop.getInstance().getInventories().openHelmetsBuyMarketInventory(player);
@@ -49,7 +49,7 @@ public class EquipementMarket implements Listener {
                         LotoxShop.getInstance().getInventories().openLeggingsBuyMarketInventory(player);
                         break;
                     case NETHERITE_BOOTS:
-                        LotoxShop.getInstance().getInventories().openBootsBuyMarketInventory(player);
+                        player.openInventory(LotoxShop.getInstance().getInventories().openBootsBuyMarketInventory(player));
                         break;
                     case FISHING_ROD:
                         LotoxShop.getInstance().getInventories().openFishingRodBuyMarketInventory(player);
@@ -73,7 +73,7 @@ public class EquipementMarket implements Listener {
                     return;
                 }
                 LotoxShop.getInstance().tryBuying(player, item);
-                LotoxShop.getInstance().getInventories().openSwordsBuyMarketInventory(player);
+                player.openInventory(LotoxShop.getInstance().getInventories().openSwordsBuyMarketInventory(player));
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lPlastrons§7 -§6 ")) {
                 if (event.getCurrentItem().getType().name().contains("GLASS")) {
@@ -152,7 +152,7 @@ public class EquipementMarket implements Listener {
                     return;
                 }
                 LotoxShop.getInstance().tryBuying(player, item);
-                LotoxShop.getInstance().getInventories().openBootsBuyMarketInventory(player);
+                player.openInventory(LotoxShop.getInstance().getInventories().openBootsBuyMarketInventory(player));
                 event.setCancelled(true);
             } else if (name.contains("§c§n§lRods§7 -§6 ")) {
                 if (event.getCurrentItem().getType().name().contains("GLASS")) {

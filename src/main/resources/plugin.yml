@@ -11,3 +11,5 @@ commands:
     description: To pay
   furnace:
     description: To cook what you want
+  tpa:
+    description: To tp

@@ -210,7 +210,7 @@ public class Inventories {
         player.openInventory(inv);
     }
 
-    public void openSwordsBuyMarketInventory(Player player) {
+    public Inventory openSwordsBuyMarketInventory(Player player) {
         Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lÉpées§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         for (int i = 0; i <= 9; i += 7) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
@@ -282,9 +282,9 @@ public class Inventories {
                         }
                     }
                 }).toItemStack());
-
+        inv.setItem(19, new ItemBuilder(Material.IRON_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 6).setName("§c§lÉpée §c§ld'Arès").setPrice(10000).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.DAMAGE_ARTHROPODS, 3).addEnchant(Enchantment.DAMAGE_UNDEAD, 3).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
-        player.openInventory(inv);
+        return inv;
     }
 
     public void openHelmetsBuyMarketInventory(Player player) {
@@ -310,6 +310,7 @@ public class Inventories {
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
         inv.setItem(13, new ItemBuilder(Material.GOLDEN_HELMET).setName("§eCasque §ed'Hermes").addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
+        inv.setItem(15, new ItemBuilder(Material.IRON_HELMET).setName("§c§lCasque §c§ld'Arès").addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3).addEnchant(Enchantment.THORNS, 1).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).setPrice(10000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
@@ -336,6 +337,7 @@ public class Inventories {
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
         inv.setItem(13, new ItemBuilder(Material.GOLDEN_CHESTPLATE).setName("§ePlastron §ed'Hermes").addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
+        inv.setItem(15, new ItemBuilder(Material.IRON_CHESTPLATE).setName("§c§lPlastron §c§ld'Arès").addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3).addEnchant(Enchantment.THORNS, 1).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).setPrice(10000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
@@ -388,7 +390,7 @@ public class Inventories {
         inv.setItem(13, new ItemBuilder(Material.IRON_PICKAXE).setName("§f§lPioche des trouvailles").addEnchant(Enchantment.DURABILITY, 1).addEnchant(Enchantment.DIG_SPEED, 5).setPrice(3500).toItemStack());
         inv.setItem(15, new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§f§lPioche de mineur expérimenté").addEnchant(Enchantment.DIG_SPEED, 4).addEnchant(Enchantment.DURABILITY, 2).setPrice(4500).toItemStack());
         inv.setItem(19, new ItemBuilder(Material.GOLDEN_PICKAXE).setName("§6Pioche de mineuse").addEnchant(Enchantment.DIG_SPEED, 7).addEnchant(Enchantment.DURABILITY, 10).setPrice(5500).toItemStack());
-        inv.setItem(21, new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§bPioche Fortunéo").addEnchant(Enchantment.DIG_SPEED, 4).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3).setPrice(7500).toItemStack());
+        inv.setItem(21, new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§bPioche Fortunéo").addEnchant(Enchantment.DIG_SPEED, 4).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3).addEnchant(Enchantment.DURABILITY,3).setPrice(7500).toItemStack());
         inv.setItem(23, new ItemBuilder(Material.NETHERITE_PICKAXE).setName("§c§lPioche du mineur parfait").addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).setPrice(15000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
@@ -533,11 +535,12 @@ public class Inventories {
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
         inv.setItem(13, new ItemBuilder(Material.GOLDEN_LEGGINGS).setName("§eJambières §ed'Hermes").addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
+        inv.setItem(15, new ItemBuilder(Material.IRON_LEGGINGS).setName("§c§lJambières §c§ld'Arès").addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3).addEnchant(Enchantment.THORNS, 1).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).setPrice(10000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
-    public void openBootsBuyMarketInventory(Player player) {
+    public Inventory openBootsBuyMarketInventory(Player player) {
         Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lBottes§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         for (int i = 0; i <= 9; i += 7) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
@@ -577,8 +580,38 @@ public class Inventories {
                 }
             }
         }).addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
+        inv.setItem(15, new ItemBuilder(Material.IRON_BOOTS).setName("§c§lBottes §c§ld'Arès").setOnDamage(event -> {
+            Player p = (Player) event.getDamager();
+            int amountPiece = 0;
+            ItemStack item = p.getInventory().getItemInMainHand();
+            for (ItemStack stack : p.getInventory().getArmorContents()) {
+                if (stack != null){
+                    if (stack.hasItemMeta()){
+                        if (Objects.requireNonNull(stack.getItemMeta()).hasDisplayName()){
+                            if (stack.getItemMeta().getDisplayName().contains("§c§ld'Arès")){
+                                amountPiece++;
+                            }
+                        }
+                    }
+                }
+            }
+                if (item.hasItemMeta()){
+                    if (Objects.requireNonNull(item.getItemMeta()).hasDisplayName()){
+                        if (item.getItemMeta().getDisplayName().contains(" §c§ld'Arès")){
+                            amountPiece++;
+                        }
+                    }
+                }
+                if (amountPiece > 0){
+                    double boost = 1.0 + (amountPiece *0.1);
+
+                    System.out.println(boost+ "//"+event.getDamage());
+                    event.setDamage(event.getDamage()*boost);
+                    System.out.println(event.getDamage());
+                }
+        }).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3).addEnchant(Enchantment.THORNS, 1).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).setPrice(10000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
-        player.openInventory(inv);
+        return inv;
     }
 
     public void openAxeBuyMarketInventory(Player player) {
@@ -696,5 +729,5 @@ public class Inventories {
                 .toItemStack());
         inv.setItem(22, getReturnArrow());
         player.openInventory(inv);
-}
+    }
 }

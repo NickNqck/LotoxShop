@@ -47,6 +47,8 @@ public final class LotoxShop extends JavaPlugin {
         registerListeners();
         for (Player p : Bukkit.getOnlinePlayers()){
             PlayerListeners.onBoardJoin(p);
+            getInventories().openBootsBuyMarketInventory(p);
+            getInventories().openSwordsBuyMarketInventory(p);
         }
         getServer().getScheduler().runTaskTimer(this, () -> {
             for (FastBoard board : this.boards.values()) {
@@ -63,6 +65,7 @@ public final class LotoxShop extends JavaPlugin {
         Objects.requireNonNull(getServer().getPluginCommand("market")).setExecutor(new MarketCommand());
         Objects.requireNonNull(getServer().getPluginCommand("pay")).setExecutor(new PayCommand());
         Objects.requireNonNull(getServer().getPluginCommand("furnace")).setExecutor(new FurnaceCommand());
+        Objects.requireNonNull(getServer().getPluginCommand("tpa")).setExecutor(new TpaCommand());
     }
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
