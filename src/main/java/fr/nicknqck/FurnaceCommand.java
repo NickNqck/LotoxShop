@@ -63,7 +63,6 @@ public class FurnaceCommand implements CommandExecutor {
             if (cook){
                 LotoxShop.getInstance().addCoins(sender.getUniqueId(), -250);
                 sender.sendMessage("§aVotre cuisson vous a fais perdre§6 250 coins");
-                sender.getInventory().remove(item);
                 return true;
             }
             sender.sendMessage("§cVous ne pouvez pas cuire cette objet");
