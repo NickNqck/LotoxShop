@@ -19,7 +19,7 @@ public class PlayerData {
     private int coins;
     @Setter
     private int amountPurchase;
-    @Getter
+    @Setter
     private Ranks rank;
     public PlayerData(String name, boolean isOp, int shopAmount, int amountPurchase, Ranks rank) {
         this.name = name;

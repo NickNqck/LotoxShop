@@ -1,12 +1,15 @@
 package fr.nicknqck.listeners.buy;
 
 import fr.nicknqck.LotoxShop;
+import fr.nicknqck.utils.Ranks;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Objects;
 
 public class BuyMarket implements Listener {
 
@@ -30,7 +33,7 @@ public class BuyMarket implements Listener {
                     return;
                 }
                 switch (item.getType()){
-                    case BOOK,POTION:
+                    case POTION:
                         player.sendMessage("§cFeature pas encore dev...");
                         break;
                     case ARMOR_STAND:
@@ -45,6 +48,22 @@ public class BuyMarket implements Listener {
                     case COOKED_BEEF:
                         LotoxShop.getInstance().getInventories().openFoodBuyMarketInventory(player);
                         break;
+                }
+                if (item.getType().equals(Material.BOOK)){
+                    if (item.hasItemMeta()){
+                        if (Objects.requireNonNull(item.getItemMeta()).hasLore() && item.getItemMeta().hasDisplayName()){
+                            Ranks toBuy = Ranks.getFromString(item.getItemMeta().getDisplayName());
+                            if (toBuy != null){
+                                if (LotoxShop.getInstance().buyItem(player, item, false)){
+                                    player.sendMessage("§fVous avez achetez le grade: "+toBuy.getName());
+                                    Ranks.upgradeRank(player);
+                                    LotoxShop.getInstance().getInventories().openBuyMarketInventory(player);
+                                } else {
+                                    player.sendMessage("§cVous êtes trop pauvre pour améliorer votre condition social");
+                                }
+                            }
+                        }
+                    }
                 }
                 event.setCancelled(true);
             }

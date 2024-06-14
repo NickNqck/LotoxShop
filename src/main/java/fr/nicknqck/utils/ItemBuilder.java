@@ -13,10 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.*;
 import org.bukkit.potion.PotionEffect;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
@@ -172,6 +169,11 @@ public class ItemBuilder {
         is.setItemMeta(im);
         return this;
     }
+    public ItemBuilder addPrice(int price){
+        addLoreLine("");
+        addLoreLine("§6Prix: "+price);
+        return this;
+    }
     /**
      * Re-sets the lore.
      * @param lore The lore to set it to.
@@ -190,7 +192,7 @@ public class ItemBuilder {
     public ItemBuilder removeLoreLine(String line){
         ItemMeta im = is.getItemMeta();
         assert im != null;
-        List<String> lore = new ArrayList<>(im.getLore());
+        List<String> lore = new ArrayList<>(Objects.requireNonNull(im.getLore()));
         if(!lore.contains(line))return this;
         lore.remove(line);
         im.setLore(lore);
@@ -204,7 +206,7 @@ public class ItemBuilder {
     public ItemBuilder removeLoreLine(int index){
         ItemMeta im = is.getItemMeta();
         assert im != null;
-        List<String> lore = new ArrayList<>(im.getLore());
+        List<String> lore = new ArrayList<>(Objects.requireNonNull(im.getLore()));
         if(index<0||index>lore.size())return this;
         lore.remove(index);
         im.setLore(lore);
@@ -219,7 +221,7 @@ public class ItemBuilder {
         ItemMeta im = is.getItemMeta();
         List<String> lore = new ArrayList<>();
         assert im != null;
-        if(im.hasLore())lore = new ArrayList<>(im.getLore());
+        if(im.hasLore())lore = new ArrayList<>(Objects.requireNonNull(im.getLore()));
         lore.add(line);
         im.setLore(lore);
         is.setItemMeta(im);
@@ -233,7 +235,7 @@ public class ItemBuilder {
     public ItemBuilder addLoreLine(String line, int pos){
         ItemMeta im = is.getItemMeta();
         assert im != null;
-        List<String> lore = new ArrayList<>(im.getLore());
+        List<String> lore = new ArrayList<>(Objects.requireNonNull(im.getLore()));
         lore.set(pos, line);
         im.setLore(lore);
         is.setItemMeta(im);

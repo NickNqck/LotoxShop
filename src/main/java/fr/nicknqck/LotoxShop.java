@@ -183,7 +183,6 @@ public final class LotoxShop extends JavaPlugin {
     public boolean buyItem(Player player, ItemStack item, boolean give) {
         addCoins(player.getUniqueId(), 0);
         int price = getPriceFromLore(Objects.requireNonNull(Objects.requireNonNull(item.getItemMeta()).getLore()));
-        System.out.println("price: "+price);
         if (getPlayerDataMap().get(player.getUniqueId()).getCoins() >= price) {
             if (give){
                 giveItem(player, item);

@@ -1,6 +1,7 @@
 package fr.nicknqck;
 
 import fr.nicknqck.utils.ItemBuilder;
+import fr.nicknqck.utils.Ranks;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,6 +14,10 @@ public class FurnaceCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if (commandSender instanceof Player sender){
             LotoxShop.getInstance().addCoins(sender.getUniqueId(), 0);
+            if (LotoxShop.getInstance().getPlayerDataMap().get(sender.getUniqueId()).getRank().getLvl() < Ranks.Confirmer.getLvl()){
+                sender.sendMessage("§cVous êtes trop pauvre pour avoir accès à cette commande.§7 (rang minimum: "+Ranks.Confirmer.getName()+")");
+                return true;
+            }
             if (LotoxShop.getInstance().getPlayerDataMap().get(sender.getUniqueId()).getCoins() < 250){
                 sender.sendMessage("§cVous n'avez pas asser d'argent pour utiliser cette commande");
                 return true;

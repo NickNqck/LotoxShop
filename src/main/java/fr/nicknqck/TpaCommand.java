@@ -1,5 +1,6 @@
 package fr.nicknqck;
 
+import fr.nicknqck.utils.Ranks;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -20,6 +21,10 @@ public class TpaCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if (commandSender instanceof Player sender) {
+            if (LotoxShop.getInstance().getPlayerDataMap().get(sender.getUniqueId()).getRank().getLvl() < Ranks.Confirmer.getLvl()){
+                sender.sendMessage("§cVous êtes trop pauvre pour avoir accès à cette commande.§7 (rang minimum: "+Ranks.Confirmer.getName()+")");
+                return true;
+            }
             if (args.length == 1){
                 if (args[0].equalsIgnoreCase("accept")){
                     if (uuidMap.containsKey(sender.getUniqueId())){

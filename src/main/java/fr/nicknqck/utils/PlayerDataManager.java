@@ -43,6 +43,7 @@ public class PlayerDataManager {
         try {
             config.save(file);
         } catch (IOException e) {
+            System.err.println("Unable to save configuration file");
             e.printStackTrace();
         }
     }
@@ -53,7 +54,7 @@ public class PlayerDataManager {
             boolean isOp = config.getBoolean(key + ".isOp");
             int shopAmount = config.getInt(key + ".shopAmount");
             int achatAmount = config.getInt(key+ ".achatAmount");
-            Ranks rank = Ranks.getFromString(config.getString(".rank"));
+            Ranks rank = Ranks.getFromString(config.getString(key+".rank"));
             playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount, achatAmount, rank));
         }
     }
