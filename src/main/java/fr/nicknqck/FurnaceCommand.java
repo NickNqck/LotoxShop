@@ -19,47 +19,49 @@ public class FurnaceCommand implements CommandExecutor {
             }
             ItemStack item = sender.getInventory().getItemInMainHand();
             int amount = item.getAmount();
-            boolean cook = false;
-            if (item.getType().equals(Material.RAW_IRON) || item.getType().equals(Material.IRON_ORE) || item.getType().equals(Material.DEEPSLATE_IRON_ORE)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.IRON_INGOT).setAmount(amount).toItemStack());
-                cook = true;
-            }
-            if (item.getType().equals(Material.RAW_GOLD) || item.getType().equals(Material.GOLD_ORE) || item.getType().equals(Material.DEEPSLATE_GOLD_ORE) || item.getType().equals(Material.NETHER_GOLD_ORE)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.GOLD_INGOT).setAmount(amount).toItemStack());
-                cook = true;
-            }
-            if (item.getType().equals(Material.DIAMOND_ORE) || item.getType().equals(Material.DEEPSLATE_DIAMOND_ORE)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.DIAMOND).setAmount(amount).toItemStack());
-                cook = true;
-            }
-            if (item.getType().equals(Material.DEEPSLATE_EMERALD_ORE) || item.getType().equals(Material.EMERALD_ORE)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.EMERALD).setAmount(amount).toItemStack());
-                cook = true;
-            }
-            if (item.getType().equals(Material.BEEF)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_BEEF).setAmount(amount).toItemStack());
-                cook = true;
-            }
-            if (item.getType().equals(Material.CHICKEN)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_CHICKEN).setAmount(amount).toItemStack());
-                cook = true;
-            }
-            if (item.getType().equals(Material.RABBIT)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_RABBIT).setAmount(amount).toItemStack());
-                cook = true;
-            }
-            if (item.getType().equals(Material.COD)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_COD).setAmount(amount).toItemStack());
-                cook = true;
-            }
-            if (item.getType().equals(Material.SALMON)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_SALMON).setAmount(amount).toItemStack());
-                cook = true;
-            }
-            if (item.getType().equals(Material.MUTTON)){
-                sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_MUTTON).setAmount(amount).toItemStack());
-                cook = true;
-            }
+            boolean cook = switch (item.getType()) {
+                case RAW_IRON, IRON_ORE, DEEPSLATE_IRON_ORE -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.IRON_INGOT).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                case RAW_GOLD, GOLD_ORE, DEEPSLATE_GOLD_ORE -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.GOLD_INGOT).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                case DIAMOND_ORE, DEEPSLATE_DIAMOND_ORE -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.DIAMOND).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                case EMERALD_ORE, DEEPSLATE_EMERALD_ORE -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.EMERALD).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                case BEEF -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_BEEF).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                case CHICKEN -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_CHICKEN).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                case RABBIT -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_RABBIT).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                case COD -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_COD).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                case SALMON -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_SALMON).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                case MUTTON -> {
+                    sender.getInventory().setItemInMainHand(new ItemBuilder(Material.COOKED_MUTTON).setAmount(amount).toItemStack());
+                    yield true;
+                }
+                default -> false;
+            };
             if (cook){
                 LotoxShop.getInstance().addCoins(sender.getUniqueId(), -250);
                 sender.sendMessage("§aVotre cuisson vous a fais perdre§6 250 coins");
