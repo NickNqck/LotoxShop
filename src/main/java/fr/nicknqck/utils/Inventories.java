@@ -552,6 +552,25 @@ public class Inventories {
                 }
             }
         }).addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
+        inv.setItem(13, new ItemBuilder(Material.GOLDEN_BOOTS).setName("§eBottes §ed'Hermes").setOnSeconde(event -> {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                int amountPiece = 0;
+                for (ItemStack stack : p.getInventory().getArmorContents()) {
+                    if (stack != null){
+                        if (stack.hasItemMeta()){
+                            if (Objects.requireNonNull(stack.getItemMeta()).hasDisplayName()){
+                                if (stack.getItemMeta().getDisplayName().contains("§ed'Hermes")){
+                                    amountPiece++;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (amountPiece > 0){
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 60, amountPiece-1, false, false));
+                }
+            }
+        }).addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
         inv.setItem(15, new ItemBuilder(Material.IRON_BOOTS).setName("§c§lBottes §c§ld'Arès").setOnDamage(event -> {
             Player p = (Player) event.getDamager();
             int amountPiece = 0;
