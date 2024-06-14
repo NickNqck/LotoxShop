@@ -1,7 +1,7 @@
 package fr.nicknqck.utils;
 
+
 import fr.nicknqck.LotoxShop;
-import fr.nicknqck.listeners.buy.potion.SellablePotions;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -396,34 +396,6 @@ public class Inventories {
         player.openInventory(inv);
     }
 
-    public void openEffetMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lEffets§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        for (SellablePotions potions : SellablePotions.values()) {
-            inv.setItem(potions.getSlot(), new ItemBuilder(Material.POTION)
-                    .setName(potions.getName())
-                    .setLore("", "§6Prix: " + potions.getOriginalPrice())
-                    .setPotionEffect(new PotionEffect(potions.getEffectType(), Integer.MAX_VALUE, LotoxShop.getInstance().getPotionEffectLevel(player, potions.getEffectType()), false, false))
-                    .toItemStack());
-        }
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
-        player.openInventory(inv);
-    }
-
     public void openConssomableMarketInventory(Player player) {
         Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lConssomables§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         for (int i = 0; i <= 9; i += 7) {
@@ -595,20 +567,20 @@ public class Inventories {
                     }
                 }
             }
-                if (item.hasItemMeta()){
-                    if (Objects.requireNonNull(item.getItemMeta()).hasDisplayName()){
-                        if (item.getItemMeta().getDisplayName().contains(" §c§ld'Arès")){
-                            amountPiece++;
-                        }
+            if (item.hasItemMeta()){
+                if (Objects.requireNonNull(item.getItemMeta()).hasDisplayName()){
+                    if (item.getItemMeta().getDisplayName().contains(" §c§ld'Arès")){
+                        amountPiece++;
                     }
                 }
-                if (amountPiece > 0){
-                    double boost = 1.0 + (amountPiece *0.1);
+            }
+            if (amountPiece > 0){
+                double boost = 1.0 + (amountPiece *0.1);
 
-                    System.out.println(boost+ "//"+event.getDamage());
-                    event.setDamage(event.getDamage()*boost);
-                    System.out.println(event.getDamage());
-                }
+                System.out.println(boost+ "//"+event.getDamage());
+                event.setDamage(event.getDamage()*boost);
+                System.out.println(event.getDamage());
+            }
         }).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3).addEnchant(Enchantment.THORNS, 1).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).setPrice(10000).toItemStack());
         inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         return inv;

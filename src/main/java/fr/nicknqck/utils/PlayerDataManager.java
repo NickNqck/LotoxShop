@@ -12,29 +12,22 @@ import java.util.*;
 public class PlayerDataManager {
 
     private final File file;
-    private final File potions;
     private final FileConfiguration config;
-    private final FileConfiguration potionsConfig;
 
     public PlayerDataManager(JavaPlugin plugin) {
         File dataFolder = plugin.getDataFolder();
         if (!dataFolder.exists()) {
             dataFolder.mkdirs();
         }
-        this.potions = new File(dataFolder, "potions.yml");
         this.file = new File(dataFolder, "players.yml");
         try {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            if (!potions.exists()){
-                potions.createNewFile();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.config = YamlConfiguration.loadConfiguration(file);
-        this.potionsConfig = YamlConfiguration.loadConfiguration(potions);
     }
 
     public void saveData(Map<UUID, PlayerData> playerDataMap) {
@@ -51,21 +44,6 @@ public class PlayerDataManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        savePotionsData(playerDataMap);
-    }
-    public void savePotionsData(Map<UUID, PlayerData> playerDataMap) {
-        for (Map.Entry<UUID, PlayerData> entry : playerDataMap.entrySet()){
-            UUID uuid = entry.getKey();
-            PlayerData playerData = entry.getValue();
-            potionsConfig.set(uuid.toString() +".name", playerData.getName());
-            potionsConfig.set(uuid + ".achatPotionAmount", playerData.getAmountPotionPurchase());
-            potionsConfig.set(uuid + ".effects", playerData.getEffects());
-        }
-        try {
-            potionsConfig.save(potions);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
     public void loadData(Map<UUID, PlayerData> playerDataMap) {
         for (String key : config.getKeys(false)) {
@@ -74,9 +52,8 @@ public class PlayerDataManager {
             boolean isOp = config.getBoolean(key + ".isOp");
             int shopAmount = config.getInt(key + ".shopAmount");
             int achatAmount = config.getInt(key+ ".achatAmount");
-            int achatPotionAmount = potionsConfig.getInt(key+ ".achatPotionAmount");
 
-            playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount, achatAmount, achatPotionAmount, new HashMap<>()));
+            playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount, achatAmount));
         }
     }
 }

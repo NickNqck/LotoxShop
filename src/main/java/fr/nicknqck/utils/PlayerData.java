@@ -19,18 +19,12 @@ public class PlayerData {
     private int coins;
     @Setter
     private int amountPurchase;
-    @Setter
-    private int amountPotionPurchase;
 
     private final Map<PotionEffectType, Integer> effects = new HashMap<>();
-    public PlayerData(String name, boolean isOp, int shopAmount, int amountPurchase, int amountPotionPurchase, Map<PotionEffectType, Integer> effectType) {
+    public PlayerData(String name, boolean isOp, int shopAmount, int amountPurchase) {
         this.name = name;
         this.isOp = isOp;
         this.coins = shopAmount;
-        this.amountPurchase = amountPurchase;
-        this.amountPotionPurchase = amountPotionPurchase;
-        if (effectType != null){
-            effects.putAll(effectType);
-        }
+       this.amountPurchase = amountPurchase;
     }
 }

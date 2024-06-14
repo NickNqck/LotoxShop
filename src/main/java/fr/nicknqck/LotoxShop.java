@@ -4,12 +4,11 @@ import fr.mrmicky.fastboard.FastBoard;
 import fr.nicknqck.listeners.PlayerListeners;
 import fr.nicknqck.listeners.SellMarket;
 import fr.nicknqck.listeners.buy.BuyMarket;
+import fr.nicknqck.listeners.buy.benediction.BenedictionMarket;
 import fr.nicknqck.listeners.buy.blocs.BlocsMarket;
 import fr.nicknqck.listeners.buy.conssumable.ConssomableMarket;
 import fr.nicknqck.listeners.buy.food.FoodMarket;
-import fr.nicknqck.listeners.buy.potion.EffetMarket;
 import fr.nicknqck.listeners.buy.equipement.EquipementMarket;
-import fr.nicknqck.listeners.buy.potion.SellablePotions;
 import fr.nicknqck.listeners.customevents.onSecondEvent;
 import fr.nicknqck.utils.*;
 import lombok.Getter;
@@ -72,10 +71,10 @@ public final class LotoxShop extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SellMarket(), this);
         getServer().getPluginManager().registerEvents(new BuyMarket(), this);
         getServer().getPluginManager().registerEvents(new EquipementMarket(), this);
-        getServer().getPluginManager().registerEvents(new EffetMarket(), this);
         getServer().getPluginManager().registerEvents(new ConssomableMarket(), this);
         getServer().getPluginManager().registerEvents(new BlocsMarket(), this);
         getServer().getPluginManager().registerEvents(new FoodMarket(), this);
+        getServer().getPluginManager().registerEvents(new BenedictionMarket(), this);
     }
     public void addCoins(UUID uuid, int coins){
         if (playerDataMap.containsKey(uuid)){
@@ -86,27 +85,9 @@ public final class LotoxShop extends JavaPlugin {
     }
     public void setCoins(UUID uuid, int coins){
         if (!playerDataMap.containsKey(uuid)){
-            playerDataMap.put(uuid, new PlayerData(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName(), Objects.requireNonNull(Bukkit.getPlayer(uuid)).isOp(), 0, 0, 0, null));
+            playerDataMap.put(uuid, new PlayerData(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName(), Objects.requireNonNull(Bukkit.getPlayer(uuid)).isOp(), 0, 0));
         }
         playerDataMap.get(uuid).setCoins(coins);
-        getPlayerDataManager().saveData(playerDataMap);
-    }
-    public void addEffects(UUID uuid, PotionEffectType potionEffectType){
-        addCoins(uuid, 0);
-        for (SellablePotions sellablePotions : SellablePotions.values()){
-            if (sellablePotions.getEffectType().equals(potionEffectType)){
-                playerDataMap.get(uuid).setAmountPotionPurchase(playerDataMap.get(uuid).getAmountPotionPurchase()+1);
-                int lvl = 0;
-                if (playerDataMap.get(uuid).getEffects().containsKey(potionEffectType)) {
-                    lvl = playerDataMap.get(uuid).getEffects().get(potionEffectType);
-                    playerDataMap.get(uuid).getEffects().remove(potionEffectType, lvl);
-
-                }
-                playerDataMap.get(uuid).getEffects().put(potionEffectType, lvl);
-                LotoxShop.getInstance().getPlayerDataManager().saveData(playerDataMap);
-                break;
-            }
-        }
         getPlayerDataManager().saveData(playerDataMap);
     }
     private void updateBoard(FastBoard board) {

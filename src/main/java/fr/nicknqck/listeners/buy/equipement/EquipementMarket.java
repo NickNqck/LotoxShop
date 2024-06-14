@@ -101,7 +101,7 @@ public class EquipementMarket implements Listener {
                 LotoxShop.getInstance().tryBuying(player, item);
                 LotoxShop.getInstance().getInventories().openHelmetsBuyMarketInventory(player);
                 event.setCancelled(true);
-            } else if (name.contains("§c§n§lBow§7 -§6 ")) {
+            } else if (name.contains("§c§n§lArc§7 -§6 ")) {
                 if (event.getCurrentItem().getType().name().contains("GLASS")) {
                     event.setCancelled(true);
                     return;
