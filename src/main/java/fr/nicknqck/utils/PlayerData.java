@@ -19,12 +19,13 @@ public class PlayerData {
     private int coins;
     @Setter
     private int amountPurchase;
-
-    private final Map<PotionEffectType, Integer> effects = new HashMap<>();
-    public PlayerData(String name, boolean isOp, int shopAmount, int amountPurchase) {
+    @Getter
+    private Ranks rank;
+    public PlayerData(String name, boolean isOp, int shopAmount, int amountPurchase, Ranks rank) {
         this.name = name;
         this.isOp = isOp;
         this.coins = shopAmount;
        this.amountPurchase = amountPurchase;
+       this.rank = rank;
     }
 }

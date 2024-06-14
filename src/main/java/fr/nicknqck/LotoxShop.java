@@ -85,7 +85,7 @@ public final class LotoxShop extends JavaPlugin {
     }
     public void setCoins(UUID uuid, int coins){
         if (!playerDataMap.containsKey(uuid)){
-            playerDataMap.put(uuid, new PlayerData(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName(), Objects.requireNonNull(Bukkit.getPlayer(uuid)).isOp(), 0, 0));
+            playerDataMap.put(uuid, new PlayerData(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName(), Objects.requireNonNull(Bukkit.getPlayer(uuid)).isOp(), 0, 0, Ranks.Client));
         }
         playerDataMap.get(uuid).setCoins(coins);
         getPlayerDataManager().saveData(playerDataMap);
@@ -97,7 +97,7 @@ public final class LotoxShop extends JavaPlugin {
                 "",
                 "§7§l・§bCompte: §e" + board.getPlayer().getName(),
                 "§7§l・§bCoins: §a§l" + getPlayerDataMap().get(board.getPlayer().getUniqueId()).getCoins() + "§e 💰",
-                "§7§l・§bEffets: §rAucun",
+                "§7§l・§bGrade: "+getPlayerDataMap().get(board.getPlayer().getUniqueId()).getRank().getName(),
                 "",
                 "§l • §7§lSTATISTIQUES ",
                 "",

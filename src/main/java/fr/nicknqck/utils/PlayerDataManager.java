@@ -3,11 +3,11 @@ package fr.nicknqck.utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffectType;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.Map;
+import java.util.UUID;
 
 public class PlayerDataManager {
 
@@ -38,6 +38,7 @@ public class PlayerDataManager {
             config.set(uuid + ".isOp", playerData.isOp());
             config.set(uuid + ".shopAmount", playerData.getCoins());
             config.set(uuid + ".achatAmount", playerData.getAmountPurchase());
+            config.set(uuid + ".rank", playerData.getRank().getName());
         }
         try {
             config.save(file);
@@ -52,8 +53,8 @@ public class PlayerDataManager {
             boolean isOp = config.getBoolean(key + ".isOp");
             int shopAmount = config.getInt(key + ".shopAmount");
             int achatAmount = config.getInt(key+ ".achatAmount");
-
-            playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount, achatAmount));
+            Ranks rank = Ranks.getFromString(config.getString(".rank"));
+            playerDataMap.put(uuid, new PlayerData(name, isOp, shopAmount, achatAmount, rank));
         }
     }
 }
