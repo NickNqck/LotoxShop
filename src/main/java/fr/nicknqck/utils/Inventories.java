@@ -152,22 +152,7 @@ public class Inventories {
     }
 
     public void openBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lAcheter§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        Inventory inv = getClassicInventory("§c§n§lAcheter§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(11, new ItemBuilder(Material.BOOK).setName("§r§fKits").setLore("Pas encore développer...").toItemStack());
         inv.setItem(13, new ItemBuilder(Material.ARMOR_STAND).setName("§r§fÉquipement").toItemStack());
         inv.setItem(15, new ItemBuilder(Material.COOKED_BEEF).setName("§r§fNourriture").toItemStack());
@@ -175,27 +160,11 @@ public class Inventories {
         inv.setItem(31, new ItemBuilder(Material.BRICKS).setName("§r§fBlocs").toItemStack());
 
         inv.setItem(33, new ItemBuilder(Material.ARROW).setName("§r§fConssumable").toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
     public void openEquipementMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lÉquipement§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        Inventory inv = getClassicInventory("§c§n§lÉquipement§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(11, new ItemBuilder(Material.NETHERITE_SWORD).setName("§r§fÉpées").toItemStack());
         inv.setItem(13, new ItemBuilder(Material.NETHERITE_HELMET).setName("§r§fCasques").toItemStack());
         inv.setItem(15, new ItemBuilder(Material.NETHERITE_CHESTPLATE).setName("§r§fPlastrons").toItemStack());
@@ -206,27 +175,11 @@ public class Inventories {
         inv.setItem(25, new ItemBuilder(Material.FISHING_ROD).setName("§r§fRods").toItemStack());
         inv.setItem(33, new ItemBuilder(Material.NETHERITE_BOOTS).setName("§r§fBottes").toItemStack());
         inv.setItem(19, new ItemBuilder(Material.NETHERITE_PICKAXE).setName("§r§fPioches").toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
     public Inventory openSwordsBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lÉpées§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        Inventory inv = getClassicInventory("§c§n§lÉpées§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(11, new ItemBuilder(Material.DIAMOND_SWORD).setName("§c§lSword of Kratos").setPrice(6000)
                 .addEnchant(Enchantment.DAMAGE_ALL, 4)
                 .addEnchant(Enchantment.FIRE_ASPECT, 3)
@@ -283,27 +236,11 @@ public class Inventories {
                     }
                 }).toItemStack());
         inv.setItem(19, new ItemBuilder(Material.IRON_SWORD).addEnchant(Enchantment.DAMAGE_ALL, 6).setName("§c§lÉpée §c§ld'Arès").setPrice(10000).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.DAMAGE_ARTHROPODS, 3).addEnchant(Enchantment.DAMAGE_UNDEAD, 3).toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         return inv;
     }
 
     public void openHelmetsBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lCasques§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        Inventory inv = getClassicInventory("§c§n§lCasques§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(11, new ItemBuilder(Material.IRON_HELMET).setName("§c§lCasque d'elfe").setLore("", "§6Prix: " + 2500 + " coins")
                 .addEnchant(Enchantment.PROTECTION_PROJECTILE, 5)
                 .addEnchant(Enchantment.OXYGEN, 3)
@@ -311,34 +248,17 @@ public class Inventories {
                 .toItemStack());
         inv.setItem(13, new ItemBuilder(Material.GOLDEN_HELMET).setName("§eCasque §ed'Hermes").addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
         inv.setItem(15, new ItemBuilder(Material.IRON_HELMET).setName("§c§lCasque §c§ld'Arès").addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3).addEnchant(Enchantment.THORNS, 1).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).setPrice(10000).toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
     public void openChestPlateBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lPlastrons§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        Inventory inv = getClassicInventory("§c§n§lPlastrons§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(11, new ItemBuilder(Material.IRON_CHESTPLATE).setName("§c§lPlastron d'elfe").setLore("", "§6Prix: " + 7500 + " coins")
                 .addEnchant(Enchantment.PROTECTION_PROJECTILE, 5)
                 .addEnchant(Enchantment.DURABILITY, 3)
                 .toItemStack());
         inv.setItem(13, new ItemBuilder(Material.GOLDEN_CHESTPLATE).setName("§ePlastron §ed'Hermes").addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
         inv.setItem(15, new ItemBuilder(Material.IRON_CHESTPLATE).setName("§c§lPlastron §c§ld'Arès").addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3).addEnchant(Enchantment.THORNS, 1).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).setPrice(10000).toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
@@ -365,12 +285,11 @@ public class Inventories {
                 .addEnchant(Enchantment.ARROW_FIRE, 1)
                 .addEnchant(Enchantment.ARROW_INFINITE, 1)
                 .toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
     public void openPickaxeBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lPioches§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
+        Inventory inv = getClassicInventory("§c§n§lPioches§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         for (int i = 0; i <= 9; i += 7) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
             inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
@@ -392,26 +311,11 @@ public class Inventories {
         inv.setItem(19, new ItemBuilder(Material.GOLDEN_PICKAXE).setName("§6Pioche de mineuse").addEnchant(Enchantment.DIG_SPEED, 7).addEnchant(Enchantment.DURABILITY, 10).setPrice(5500).toItemStack());
         inv.setItem(21, new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§bPioche Fortunéo").addEnchant(Enchantment.DIG_SPEED, 4).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3).addEnchant(Enchantment.DURABILITY,3).setPrice(7500).toItemStack());
         inv.setItem(23, new ItemBuilder(Material.NETHERITE_PICKAXE).setName("§c§lPioche du mineur parfait").addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.DURABILITY, 3).setPrice(15000).toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
     public void openConssomableMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lConssomables§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
+        Inventory inv = getClassicInventory("§c§n§lConssomables§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
         inv.setItem(11, new ItemBuilder(Material.ARROW).setAmount(4).setName("§r§fFlèche").setPrice(50).toItemStack());
         inv.setItem(13, new ItemBuilder(Material.SPECTRAL_ARROW).setAmount(4).setName("§r§fFlèche Spectral").setPrice(150).toItemStack());
@@ -423,27 +327,11 @@ public class Inventories {
         inv.setItem(29, new ItemBuilder(Material.TOTEM_OF_UNDYING).setAmount(1).setName("§r§fTotem de résurrection").setPrice(17500).toItemStack());
         inv.setItem(31, new ItemBuilder(Material.NAME_TAG).setPrice(500).toItemStack());
         inv.setItem(33, new ItemBuilder(Material.BONE_MEAL).setPrice(750).setAmount(5).toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
     public void openBlocsMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lBlocs§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        Inventory inv = getClassicInventory("§c§n§lBlocs§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(11, new ItemBuilder(Material.DIRT).setAmount(32).setPrice(80).toItemStack());
         inv.setItem(13, new ItemBuilder(Material.SAND).setAmount(32).setPrice(100).toItemStack());
         inv.setItem(15, new ItemBuilder(Material.MAGMA_BLOCK).setAmount(16).setPrice(350).toItemStack());
@@ -454,39 +342,22 @@ public class Inventories {
         inv.setItem(29, new ItemBuilder(Material.CONDUIT).setAmount(12).setPrice(1250).toItemStack());
         inv.setItem(31, new ItemBuilder(Material.SHULKER_BOX).setPrice(20000).toItemStack());
         inv.setItem(33, new ItemBuilder(Material.CHERRY_LOG).setPrice(5000).setAmount(48).toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
     public void openFoodBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, " §c§n§lNouriturre§7 -§6" + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        Inventory inv = getClassicInventory(" §c§n§lNouriturre§7 -§6" + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(11, new ItemBuilder(Material.COOKED_BEEF).setAmount(16).setPrice(450).toItemStack());
         inv.setItem(13, new ItemBuilder(Material.COOKED_CHICKEN).setAmount(20).setPrice(250).toItemStack());
         inv.setItem(15, new ItemBuilder(Material.PUFFERFISH).setAmount(4).setPrice(400).toItemStack());
         inv.setItem(29, new ItemBuilder(Material.GOLDEN_CARROT).setAmount(64).setPrice(1500).toItemStack());
         inv.setItem(31, new ItemBuilder(Material.GLISTERING_MELON_SLICE).setAmount(16).setPrice(500).toItemStack());
         inv.setItem(33, new ItemBuilder(Material.BAKED_POTATO).setAmount(16).setPrice(250).toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
     public void openLeggingsBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lJambières§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
+        Inventory inv = getClassicInventory("§c§n§lJambières§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         for (int i = 0; i <= 9; i += 7) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
             inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
@@ -508,12 +379,11 @@ public class Inventories {
                 .toItemStack());
         inv.setItem(13, new ItemBuilder(Material.GOLDEN_LEGGINGS).setName("§eJambières §ed'Hermes").addEnchant(Enchantment.DURABILITY, 5).setPrice(5000).toItemStack());
         inv.setItem(15, new ItemBuilder(Material.IRON_LEGGINGS).setName("§c§lJambières §c§ld'Arès").addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3).addEnchant(Enchantment.THORNS, 1).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).setPrice(10000).toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         player.openInventory(inv);
     }
 
     public Inventory openBootsBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lBottes§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
+        Inventory inv = getClassicInventory("§c§n§lBottes§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         for (int i = 0; i <= 9; i += 7) {
             inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
             inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
@@ -601,28 +471,11 @@ public class Inventories {
                 System.out.println(event.getDamage());
             }
         }).addEnchant(Enchantment.DURABILITY, 3).addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3).addEnchant(Enchantment.THORNS, 1).addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3).setPrice(10000).toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
         return inv;
     }
 
     public void openAxeBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lHaches§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        Inventory inv = getClassicInventory("§c§n§lHaches§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(11, new ItemBuilder(Material.GOLDEN_AXE).setName("§c§lHache D'apprenti").setPrice(1500)
                 .addEnchant(Enchantment.DIG_SPEED, 2)
                 .addEnchant(Enchantment.DURABILITY, 1)
@@ -652,23 +505,7 @@ public class Inventories {
     }
 
     public void openShovelBuyMarketInventory(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 9 * 5, "§c§n§lPelles§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
-        for (int i = 0; i <= 9; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 36; i <= 45; i += 7) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 9; i <= 17; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 27; i <= 35; i += 8) {
-            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        inv.setItem(36, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        Inventory inv = getClassicInventory("§c§n§lPelles§7 -§6 " + LotoxShop.getInstance().getStringCoins(player.getUniqueId()) + " coins");
         inv.setItem(11, new ItemBuilder(Material.GOLDEN_SHOVEL).setName("§c§lPelle d'apprenti").setPrice(1500)
                 .addEnchant(Enchantment.DIG_SPEED, 2)
                 .toItemStack());
@@ -720,5 +557,24 @@ public class Inventories {
                 .toItemStack());
         inv.setItem(22, getReturnArrow());
         player.openInventory(inv);
+    }
+    private Inventory getClassicInventory(String name){
+        Inventory inv = Bukkit.createInventory(null, 9*5, name);
+        for (int i = 0; i <= 9; i += 7) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 36; i <= 45; i += 7) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+            inv.setItem(i + 1, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 9; i <= 17; i += 8) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 27; i <= 35; i += 8) {
+            inv.setItem(i, new ItemBuilder(Material.WHITE_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        inv.setItem(40, new ItemBuilder(Material.ARROW).setName("§6Retour").toItemStack());
+        return inv;
     }
 }
