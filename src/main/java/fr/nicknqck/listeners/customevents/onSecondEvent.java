@@ -5,6 +5,7 @@ import org.bukkit.event.HandlerList;
 
 public class onSecondEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
+    @SuppressWarnings("unused")
     public static HandlerList getHandlerList() {
         return handlers;
     }

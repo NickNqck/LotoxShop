@@ -13,3 +13,7 @@ commands:
     description: To cook what you want
   tpa:
     description: To tp
+  sethome:
+    description: to set home
+  home:
+    description: to tp to an home

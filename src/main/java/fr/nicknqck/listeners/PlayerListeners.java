@@ -32,17 +32,12 @@ public class PlayerListeners implements Listener{
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         onBoardJoin(player);
-        if (player.getUniqueId().equals(UUID.fromString("a25f1036-e4e2-4c6f-9df9-be7bd94e4cdd"))){
-            Bukkit.getOnlinePlayers().stream().filter(players -> !players.getUniqueId().equals(player.getUniqueId())).forEach(players -> players.sendMessage("§7» §5Le §l§dGROS §r§dGAY §r§5de §cL§6o§et§ao§5x est dans la place"));
-            player.sendMessage("§e"+player.getDisplayName()+" joined the game");
-            e.setJoinMessage(null);
-        }
     }
     public static void onBoardJoin(Player player){
         LotoxShop.getInstance().addCoins(player.getUniqueId(), 0);
         FastBoard board = new FastBoard(player);
 
-        board.updateTitle("§dLotoxShop");
+        board.updateTitle("§cQuoiCouSurvie");
 
         LotoxShop.getInstance().getBoards().put(player.getUniqueId(), board);
     }

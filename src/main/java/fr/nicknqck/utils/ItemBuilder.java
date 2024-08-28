@@ -295,7 +295,7 @@ public class ItemBuilder {
     public ItemBuilder hideAllAttributes() {
         ItemMeta itemMeta = this.is.getItemMeta();
         assert itemMeta != null;
-        itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_POTION_EFFECTS);
+        itemMeta.addItemFlags(ItemFlag.values());
         this.is.setItemMeta(itemMeta);
         return this;
     }

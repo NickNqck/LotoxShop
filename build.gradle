@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly "org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT"
+    compileOnly "org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT"
     compileOnly 'org.projectlombok:lombok:1.18.32'
     annotationProcessor 'org.projectlombok:lombok:1.18.32'
     testCompileOnly 'org.projectlombok:lombok:1.18.32'
@@ -61,4 +61,4 @@ processResources {
 shadowJar {
     relocate 'fr.mrmicky.fastboard', 'fr.nicknqck.fastboard'
 }
-setLibsDirName("T:\\Bureau\\Dev\\Serv\\serv 1.20.1\\plugins")
+setLibsDirName("T:\\Bureau\\Dev\\Serv\\serv 1.21.1\\plugins")

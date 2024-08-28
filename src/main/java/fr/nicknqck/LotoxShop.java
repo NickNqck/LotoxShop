@@ -1,6 +1,7 @@
 package fr.nicknqck;
 
 import fr.mrmicky.fastboard.FastBoard;
+import fr.nicknqck.commands.*;
 import fr.nicknqck.listeners.PlayerListeners;
 import fr.nicknqck.listeners.SellMarket;
 import fr.nicknqck.listeners.buy.BuyMarket;
@@ -65,6 +66,8 @@ public final class LotoxShop extends JavaPlugin {
         Objects.requireNonNull(getServer().getPluginCommand("pay")).setExecutor(new PayCommand());
         Objects.requireNonNull(getServer().getPluginCommand("furnace")).setExecutor(new FurnaceCommand());
         Objects.requireNonNull(getServer().getPluginCommand("tpa")).setExecutor(new TpaCommand());
+        Objects.requireNonNull(getServer().getPluginCommand("sethome")).setExecutor(new setHomeCommand());
+        Objects.requireNonNull(getServer().getPluginCommand("home")).setExecutor(new HomeCommand());
     }
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
@@ -82,10 +85,13 @@ public final class LotoxShop extends JavaPlugin {
         } else {
             setCoins(uuid, coins);
         }
+        Player player = Bukkit.getPlayer(uuid);
+        if (player == null)return;
+        player.setPlayerListName("§7["+playerDataMap.get(uuid).getRank().getName()+"§7] §f"+player.getDisplayName());
     }
     public void setCoins(UUID uuid, int coins){
         if (!playerDataMap.containsKey(uuid)){
-            playerDataMap.put(uuid, new PlayerData(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName(), Objects.requireNonNull(Bukkit.getPlayer(uuid)).isOp(), 0, 0, Ranks.Client));
+            playerDataMap.put(uuid, new PlayerData(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName(), Objects.requireNonNull(Bukkit.getPlayer(uuid)).isOp(), 0, 0, Ranks.Client, new HashMap<>()));
         }
         playerDataMap.get(uuid).setCoins(coins);
         getPlayerDataManager().saveData(playerDataMap);
@@ -215,5 +221,4 @@ public final class LotoxShop extends JavaPlugin {
         // Retourner 0 si le joueur n'a pas l'effet de potion
         return 0;
     }
-
 }

@@ -1,5 +1,6 @@
-package fr.nicknqck;
+package fr.nicknqck.commands;
 
+import fr.nicknqck.LotoxShop;
 import fr.nicknqck.utils.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -93,6 +94,9 @@ public class MarketCommand implements CommandExecutor, Listener {
                                     return true;
                                 }
                             }
+                        } else {
+                            sender.sendMessage("§7Il faut être§c Admin§7 pour utiliser cette commande !");
+                            return true;
                         }
                     }
                 }

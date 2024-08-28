@@ -1,5 +1,6 @@
-package fr.nicknqck;
+package fr.nicknqck.commands;
 
+import fr.nicknqck.LotoxShop;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,5 +1,6 @@
-package fr.nicknqck;
+package fr.nicknqck.commands;
 
+import fr.nicknqck.LotoxShop;
 import fr.nicknqck.utils.ItemBuilder;
 import fr.nicknqck.utils.Ranks;
 import org.bukkit.Material;
@@ -19,7 +20,7 @@ public class FurnaceCommand implements CommandExecutor {
                 return true;
             }
             if (LotoxShop.getInstance().getPlayerDataMap().get(sender.getUniqueId()).getCoins() < 250){
-                sender.sendMessage("§cVous n'avez pas asser d'argent pour utiliser cette commande");
+                sender.sendMessage("§cVous n'avez pas asser d'argent pour utiliser cette commande, il vous faut minimum §e250💰");
                 return true;
             }
             ItemStack item = sender.getInventory().getItemInMainHand();

@@ -1,5 +1,6 @@
-package fr.nicknqck;
+package fr.nicknqck.commands;
 
+import fr.nicknqck.LotoxShop;
 import fr.nicknqck.utils.Ranks;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
