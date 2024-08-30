@@ -1,7 +1,9 @@
 package fr.nicknqck.utils;
 
 import fr.nicknqck.listeners.PlayerListeners;
+import fr.nicknqck.listeners.customevents.EquipementChangeEvent;
 import fr.nicknqck.listeners.customevents.onSecondEvent;
+import lombok.NonNull;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -49,16 +51,6 @@ public class ItemBuilder {
         is= new ItemStack(m, amount);
     }
     /**
-     * Create a new ItemBuilder from scratch.
-     * @param m The material of the item.
-     * @param amount The amount of the item.
-     * @param durability The durability of the item.
-     */
-    @SuppressWarnings("deprecation")
-    public ItemBuilder(Material m, int amount, int durability){
-        is = new ItemStack(m, Math.min(amount, 64), (byte) durability);
-    }
-    /**
      * Clone the ItemBuilder into a new one.
      * @return The cloned instance.
      */
@@ -69,11 +61,6 @@ public class ItemBuilder {
      * Change the durability of the item.
      * @param dur The durability to set it to.
      */
-    @SuppressWarnings("deprecation")
-    public ItemBuilder setDurability(short dur){
-        is.setDurability(dur);
-        return this;
-    }
     @SuppressWarnings("deprecation")
     public ItemBuilder setDurability(int dur) {
         is.setDurability((short)dur);
@@ -88,15 +75,6 @@ public class ItemBuilder {
         assert im != null;
         im.setDisplayName(name);
         is.setItemMeta(im);
-        return this;
-    }
-    /**
-     * Add an unsafe enchantment.
-     * @param ench The enchantment to add.
-     * @param level The level to put the enchant on.
-     */
-    public ItemBuilder addUnsafeEnchantment(Enchantment ench, int level){
-        is.addUnsafeEnchantment(ench, level);
         return this;
     }
     /**
@@ -172,17 +150,6 @@ public class ItemBuilder {
     public ItemBuilder addPrice(int price){
         addLoreLine("");
         addLoreLine("§6Prix: "+price);
-        return this;
-    }
-    /**
-     * Re-sets the lore.
-     * @param lore The lore to set it to.
-     */
-    public ItemBuilder setLore(List<String> lore) {
-        ItemMeta im = is.getItemMeta();
-        assert im != null;
-        im.setLore(lore);
-        is.setItemMeta(im);
         return this;
     }
     /**
@@ -299,14 +266,6 @@ public class ItemBuilder {
         this.is.setItemMeta(itemMeta);
         return this;
     }
-
-    public ItemBuilder hideEnchantAttributes() {
-        ItemMeta itemMeta = this.is.getItemMeta();
-        assert itemMeta != null;
-        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        this.is.setItemMeta(itemMeta);
-        return this;
-    }
     public ItemBuilder hideAttributes(ItemFlag... a) {
         ItemMeta itemMeta = this.is.getItemMeta();
         assert itemMeta != null;
@@ -356,19 +315,21 @@ public class ItemBuilder {
         }catch (ClassCastException ignored){}
         return this;
     }
-    public ItemBuilder setOnSeconde(Consumer<onSecondEvent> consumer){
-        if (consumer != null){
-            if (!PlayerListeners.getInstance().getOnSecondConsumers().contains(consumer)){
-                PlayerListeners.getInstance().getOnSecondConsumers().add(consumer);
-            }
+    public ItemBuilder setOnSeconde(@NonNull Consumer<onSecondEvent> consumer){
+        if (!PlayerListeners.getInstance().getOnSecondConsumers().contains(consumer)) {
+            PlayerListeners.getInstance().getOnSecondConsumers().add(consumer);
         }
         return this;
     }
-    public ItemBuilder setOnDamage(Consumer<EntityDamageByEntityEvent> consumer){
-        if (consumer != null){
-            if (!PlayerListeners.getInstance().getOnEntityDamageByEntityConsumers().contains(consumer)){
-                PlayerListeners.getInstance().getOnEntityDamageByEntityConsumers().add(consumer);
-            }
+    public ItemBuilder setOnDamage(@NonNull Consumer<EntityDamageByEntityEvent> consumer){
+        if (!PlayerListeners.getInstance().getOnEntityDamageByEntityConsumers().contains(consumer)) {
+            PlayerListeners.getInstance().getOnEntityDamageByEntityConsumers().add(consumer);
+        }
+        return this;
+    }
+    public ItemBuilder setOnEquip(@NonNull Consumer<EquipementChangeEvent> consumer) {
+        if (!PlayerListeners.getInstance().getOnEquipementChange().contains(consumer)) {
+            PlayerListeners.getInstance().getOnEquipementChange().add(consumer);
         }
         return this;
     }

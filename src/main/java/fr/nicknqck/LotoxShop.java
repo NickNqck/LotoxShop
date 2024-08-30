@@ -19,8 +19,6 @@ import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.*;
 
@@ -123,23 +121,6 @@ public final class LotoxShop extends JavaPlugin {
         }
         return toReturn;
     }
-    public void giveItem(Player target, Material material, int amount) {
-            if (countEmptySlots(target) > 0) {
-                target.getInventory().addItem(new ItemBuilder(material).setAmount(amount).toItemStack());
-            }else {
-                if (target.getInventory().contains(new ItemStack(material))) {
-                    for (ItemStack s : target.getInventory().getContents()) {
-                        if (s == null)return;
-                        if (s.getType() != material)return;
-                            if (s.getAmount() + amount <= 64) {
-                                target.getInventory().addItem(new ItemBuilder(material).setAmount(amount).toItemStack());
-                            } else {
-                                target.getWorld().dropItemNaturally(target.getLocation(), new ItemBuilder(material).setAmount(amount).toItemStack());
-                            }
-                    }
-                }
-            }
-    }
     public void giveItem(Player target, ItemStack... items) {
         for (ItemStack item : items){
             if (countEmptySlots(target) > 0) {
@@ -207,18 +188,5 @@ public final class LotoxShop extends JavaPlugin {
                 player.sendMessage("§cVous n'avez pas asser pour acheter cette objet !");
             }
         }
-    }
-    public int getPotionEffectLevel(Player player, PotionEffectType type) {
-        // Vérifier si le joueur a l'effet de potion
-        if (player.hasPotionEffect(type)) {
-            // Obtenir l'effet de potion
-            PotionEffect effect = player.getPotionEffect(type);
-            if (effect != null) {
-                // Retourner le niveau de l'effet + 1 car le niveau commence à 0 pour le niveau 1
-                return effect.getAmplifier();
-            }
-        }
-        // Retourner 0 si le joueur n'a pas l'effet de potion
-        return 0;
     }
 }
